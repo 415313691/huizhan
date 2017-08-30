@@ -10,15 +10,14 @@ import org.springframework.stereotype.Repository;
 
 import com.huizhan.entities.TDictArea;
 
-@Repository("testdao")
-public class TestDao {
-	
+@Repository("testdao1")
+public class TestDao1 {
 	 @Resource
-	 private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	public List<TDictArea> Test(){
 		Session session = sessionFactory.getCurrentSession();
 		String sql ="from TDictArea";
-		List<TDictArea> areaList = session.createSQLQuery(sql).addEntity(TDictArea.class).list();
+		List<TDictArea> areaList = session.createQuery(sql).list();
 		
 		return areaList;
 	}

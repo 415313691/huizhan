@@ -2,5 +2,30 @@
 
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.locale" value="zh_CN" />
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
 
+    <package name="default" extends="struts-default">
+      <!--    <interceptors>
+            <interceptor name="sessionCheck" class="com.tenderbg.util.SessionCheck">
+                <param name="excludeMethods">
+                    checkUser,userLogin
+                </param>
+            </interceptor>
+            <interceptor-stack name="authInterceptor1">
+                <interceptor-ref name="sessionCheck" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="authInterceptor1"></default-interceptor-ref>
+-->
+     
+        <action name="testAction_*" class="testAction" method="{1}">
+            <result name="find_ok">/index.jsp</result>
+        </action>
+ 
+    </package>
+     
 </struts>

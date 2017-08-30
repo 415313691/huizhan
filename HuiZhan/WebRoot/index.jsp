@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding=""%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -22,6 +22,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     This is my JSP page. <br>
-    <a href="<%=basePath%>index.jsp">点击拦截</a>
+    <a href="<%=basePath%>testAction_test">点击拦截</a>
   </body>
 </html>

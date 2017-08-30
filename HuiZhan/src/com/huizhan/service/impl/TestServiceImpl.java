@@ -1,11 +1,14 @@
 package com.huizhan.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.huizhan.dao.TestDao;
+import com.huizhan.entities.TDictArea;
 import com.huizhan.service.TestService;
 
 
@@ -32,10 +35,10 @@ public class TestServiceImpl implements TestService {
 	
 
 	@Cacheable(value="mycache",key="get"+1)
-	public void test() {
+	public List<TDictArea> test() {
 		// TODO Auto-generated method stub
-		System.out.println("servicetest");
-		tdao.Test();
+		List<TDictArea> areaList =tdao.Test();
+		return areaList;
 	}
 
 }
