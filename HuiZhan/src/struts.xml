@@ -26,6 +26,7 @@
             <result name="find_ok">/index.jsp</result>
         </action>
  
+ 		<action name="createFileAction" class="com.huizhan.util.CreateFile" method="create"></action>
     </package>
      
 </struts>
