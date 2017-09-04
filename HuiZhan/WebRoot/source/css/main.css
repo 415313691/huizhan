@@ -1,0 +1,95 @@
+@charset "utf-8";
+/* CSS Document */
+*{ padding:0; margin:0;}
+body{
+	background:#f2f2f2;
+	min-width:1000px;
+	font-size:14px;
+	font-family:Microsoft YaHei;}
+a{
+	text-decoration:none;
+	color:#000;}
+img{
+	border:none;}
+	
+
+.layerDiv{
+			width:730px;
+			height:340px;
+			background:#FFF;
+			margin:-170px 0px 0px -365px;
+			padding:0px;
+			border:2px solid #808080;
+			border-image:none;
+			left:50%;
+			top:50%;
+			z-index:2147483647;
+			_position:absolute;
+			 position:fixed;
+			-webkit-border-radius:8px;
+	 		-khtml-border-radius:8px;
+	   		-moz-border-radius:8px;
+			border-radius:8px;}
+.layerDiv h2{
+	margin:30px 25px 10px;
+	color:#000;
+	line-height:1.2em;
+	clear:both;
+	font-size:24px;}
+.layerDiv h3{
+	margin:20px 25px;
+	color:#333;
+	clear:both;
+	font-size:16px;}
+.layerDiv div span{
+	color:#666666;
+	font-size:12px;
+	float:right;}
+.layerDiv div span a{
+	color:#369;}
+.layerDiv ul{
+	margin:20px auto 0px;
+	width:540px;
+	height:100px;
+	clear:both;
+	_width:580px;}
+.layerDiv p{
+	margin:0px 25px;
+	padding-top:15px;
+	border-top-color:#ccc;
+	border-top-width:1px;
+	border-top-style:dotted;
+	position:relative;}
+.layerDiv ul li{
+	margin:0px 15px;
+	width:105px;
+	height:80px;
+	text-align:center;
+	float:left;
+	list-style:none;}
+.layerDiv ul li a {
+	height:80px;
+	clear:both;
+	display:block;}
+.layerDiv p a{
+	height:32px;
+	color:#666;
+	line-height:32px;
+	font-size:16px;}
+.layerDiv div{
+	margin:0px 25px;
+	color:#333;
+	padding-top:20px;
+	clear:both;
+	font-size:14px;
+	border-top-color:#ccc;
+	border-top-width:1px;
+	border-top-style:dotted;}
+.ico{ background:url(../images/icon.png) no-repeat 0px 0px;}
+.icoChrome { background-position:0px 0; width:105px; height:80px; margin-right:20px; display:inline-block;}
+.icoOpera { background-position:-115px 0; width:73px; height:80px; margin-right:20px; display:inline-block;}
+.icoFirefox{ background-position:-197px 0; width:61px; height:80px; margin-right:20px; display:inline-block;}
+.icoSafar{ background-position:-267px 0; width:69px; height:80px; display:inline-block;}
+.icoGt{ background-position:-348px -48px; height:32px; text-indent:40px; display:inline-block;}	
+
+

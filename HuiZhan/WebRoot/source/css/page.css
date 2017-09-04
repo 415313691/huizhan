@@ -1,0 +1,5 @@
+#pagelist {width:450px; margin:30px auto; padding:6px 0px; height:20px;}
+#pagelist ul li { float:left; border:1px solid #dedede; height:20px; line-height:20px; margin:0px 2px; list-style:none;}
+#pagelist ul li a, .pageinfo { display:block; padding:0px 6px; background:#; text-decoration:none;}
+.pageinfo  { color:#333;}
+.current { background:#ff6901; display:block; padding:0px 6px; color:#fff; font-weight:bold;}

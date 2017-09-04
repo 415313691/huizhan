@@ -12,14 +12,15 @@ import com.huizhan.entities.TDictArea;
 
 @Repository("testdao")
 public class TestDao {
-	
 	 @Resource
 	 private SessionFactory sessionFactory;
-	public List<TDictArea> Test(){
+	 public List<TDictArea> Test(){
 		Session session = sessionFactory.getCurrentSession();
 		String sql ="from TDictArea";
 		List<TDictArea> areaList = session.createSQLQuery(sql).addEntity(TDictArea.class).list();
 		
 		return areaList;
 	}
+	 
+	 
 }

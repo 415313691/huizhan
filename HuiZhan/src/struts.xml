@@ -8,25 +8,40 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
 
     <package name="default" extends="struts-default">
-      <!--    <interceptors>
-            <interceptor name="sessionCheck" class="com.tenderbg.util.SessionCheck">
-                <param name="excludeMethods">
-                    checkUser,userLogin
-                </param>
-            </interceptor>
-            <interceptor-stack name="authInterceptor1">
-                <interceptor-ref name="sessionCheck" />
-                <interceptor-ref name="defaultStack" />
-            </interceptor-stack>
-        </interceptors>
-        <default-interceptor-ref name="authInterceptor1"></default-interceptor-ref>
--->
+	 <interceptors>
+			
+			<interceptor name="sessionCheck" class="com.huizhan.util.Sessioninterceptor">
+				<param name="excludeMethods">
+					login,logout,
+				</param>
+			</interceptor>
+			<interceptor-stack name="authInterceptor1">
+				<interceptor-ref name="sessionCheck" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="authInterceptor1"></default-interceptor-ref> 
+     <!-- 注意global-results必须在global-exception-mappings前面 -->
+		<global-results>
+			<result name="reLogin">/login.jsp</result>
+		</global-results>
      
         <action name="testAction_*" class="testAction" method="{1}">
             <result name="find_ok">/index.jsp</result>
         </action>
  
  		<action name="createFileAction" class="com.huizhan.util.CreateFile" method="create"></action>
+ 		
+ 		 <action name="sysAction_*" class="sysAction" method="{1}">
+            <result name="login_ok">/mainIndex.jsp</result>
+            <result name="login_error">/login.jsp</result>
+            <result name="all_question">/questions.jsp</result>
+            <result name="edit_question">/editQuestion.jsp</result>
+            <result type="redirectAction" name="edit_ok">
+            	<param name="actionName">sysAction_findAllQuestion</param>
+            </result>
+            <result name="jump_setAnswer">/editAnswer.jsp</result>
+        </action>
     </package>
      
 </struts>
