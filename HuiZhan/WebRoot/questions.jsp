@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>钢钢好用户后台管理</title>
+<title>后台管理</title>
  <link href="source/images/logo1.png" type="image/x-icon" rel="shortcut icon" />
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" type="text/css" href="source/css/bootstrap.min.css" />

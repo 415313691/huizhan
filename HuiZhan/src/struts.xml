@@ -30,7 +30,7 @@
             <result name="find_ok">/index.jsp</result>
         </action>
  
- 		<action name="createFileAction" class="com.huizhan.util.CreateFile" method="create"></action>
+ 		<action name="createFileAction_*" class="com.huizhan.util.CreateFile" method="{1}"></action>
  		
  		 <action name="sysAction_*" class="sysAction" method="{1}">
             <result name="login_ok">/mainIndex.jsp</result>
@@ -41,6 +41,13 @@
             	<param name="actionName">sysAction_findAllQuestion</param>
             </result>
             <result name="jump_setAnswer">/editAnswer.jsp</result>
+        </action>
+         <action name="actAction_*" class="actAction" method="{1}">
+             <result name="activitys_ok">/activity/activityList.jsp</result>
+             <result name="before_ok">/activity/editActivity.jsp</result>
+             <result name="save_ok" type="redirectAction">actAction_findAllActivitys</result>
+             <result name="del_ok" type="redirectAction">actAction_findAllActivitys</result>
+             <result name="pic_ok">/activity/picList.jsp</result>
         </action>
     </package>
      

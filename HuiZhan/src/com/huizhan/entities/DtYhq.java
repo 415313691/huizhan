@@ -3,11 +3,8 @@ package com.huizhan.entities;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,7 +21,7 @@ public class DtYhq implements java.io.Serializable {
 	// Fields
 
 	private String yhqId;
-	private DtActivity dtActivity;
+	private String activityId;
 	private String yhqName;
 	private Date yhqBegintime;
 	private Date yhqEndtime;
@@ -47,12 +44,12 @@ public class DtYhq implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public DtYhq(String yhqId, DtActivity dtActivity, String yhqName,
+	public DtYhq(String yhqId, String activityId, String yhqName,
 			Date yhqBegintime, Date yhqEndtime, String yhqAddress,
 			String yhqCompany, String yhqPhone, Integer yhqCount,
 			Integer yhqRest, String yhqDesc) {
 		this.yhqId = yhqId;
-		this.dtActivity = dtActivity;
+		this.activityId = activityId;
 		this.yhqName = yhqName;
 		this.yhqBegintime = yhqBegintime;
 		this.yhqEndtime = yhqEndtime;
@@ -77,14 +74,13 @@ public class DtYhq implements java.io.Serializable {
 		this.yhqId = yhqId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "activity_id")
-	public DtActivity getDtActivity() {
-		return this.dtActivity;
+	@Column(name = "activity_id", length = 40)
+	public String getActivityId() {
+		return this.activityId;
 	}
 
-	public void setDtActivity(DtActivity dtActivity) {
-		this.dtActivity = dtActivity;
+	public void setActivityId(String activityId) {
+		this.activityId = activityId;
 	}
 
 	@Column(name = "yhq_name", length = 100)

@@ -22,6 +22,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  
     <link rel="stylesheet" href="source/js/createfile/style.css" type="text/css"></link>
   	<link rel="stylesheet" href="source/css/webuploader.css" type="text/css"></link></head>
+  	
+  	<link rel="stylesheet" href="<%=basePath %>source/dist/basic.min.css" type="text/css"></link>
+<script type="text/javascript" src="<%=basePath %>source/dist/dropzone-amd-module.min.js"></script>
+<link rel="stylesheet" href="<%=basePath %>source/dist/dropzone.min.css" type="text/css"></link>
+<script type="text/javascript" src="<%=basePath %>source/dist/dropzone.min.js"></script>
   
   <body>
     This is my JSP page. <br>
@@ -51,5 +56,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
     </div>
+    
+    
+    
+    <form action="/upload" class="dropzone needsclick dz-clickable" id="demo-upload">
+
+  <div class="dz-message needsclick">
+    Drop files here or click to upload.<br>
+    <span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+  </div>
+</form>
   </body>
 </html>

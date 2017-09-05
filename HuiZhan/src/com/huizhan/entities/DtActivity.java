@@ -1,15 +1,10 @@
 package com.huizhan.entities;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -39,7 +34,6 @@ public class DtActivity implements java.io.Serializable {
 	private String activityClass;
 	private String activityIstype;
 	private String activityPics;
-	private Set<DtYhq> dtYhqs = new HashSet<DtYhq>(0);
 
 	// Constructors
 
@@ -59,8 +53,7 @@ public class DtActivity implements java.io.Serializable {
 			Integer activityRestcount, Double activityRestmoney,
 			Timestamp activityBegintime, Timestamp activityEndtime,
 			String activityIsdel, String activityCompany, String activityPic,
-			String activityClass, String activityIstype, String activityPics,
-			Set<DtYhq> dtYhqs) {
+			String activityClass, String activityIstype, String activityPics) {
 		this.activityId = activityId;
 		this.activityName = activityName;
 		this.activityQuestionCount = activityQuestionCount;
@@ -77,7 +70,6 @@ public class DtActivity implements java.io.Serializable {
 		this.activityClass = activityClass;
 		this.activityIstype = activityIstype;
 		this.activityPics = activityPics;
-		this.dtYhqs = dtYhqs;
 	}
 
 	// Property accessors
@@ -226,15 +218,6 @@ public class DtActivity implements java.io.Serializable {
 
 	public void setActivityPics(String activityPics) {
 		this.activityPics = activityPics;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "dtActivity")
-	public Set<DtYhq> getDtYhqs() {
-		return this.dtYhqs;
-	}
-
-	public void setDtYhqs(Set<DtYhq> dtYhqs) {
-		this.dtYhqs = dtYhqs;
 	}
 
 }
