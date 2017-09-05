@@ -74,4 +74,22 @@ public class SysServiceImpl implements SysService {
 		 }
 		 return null;
 	 }
+	 public boolean delAnswerById(String answerId){
+		 boolean flag =false;
+		 try{
+			 flag = sysdao.delAnswerById(answerId);
+		 }catch(Exception de){
+			 de.printStackTrace();
+		 }
+		 return flag;
+	 }
+	 public boolean setWrong(String answerId,String status){
+		 boolean flag =false;
+		 try{
+			 flag = sysdao.setWrong(answerId, status);
+		 }catch(Exception de){
+			 de.printStackTrace();
+		 }
+		 return flag;
+	 }
 }

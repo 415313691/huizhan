@@ -110,8 +110,30 @@ public class SysDao {
 	  public List<DtAnswer> findAnswerByQId(String questionId){
 		  List<DtAnswer> answers = null;
 		  Session session = sessionFactory.getCurrentSession();
-		  String hql = " from DtAnswer where questionId = '"+questionId+"'";
+		  String hql = " from DtAnswer where questionId = '"+questionId+"' and answerIsdel='0'";
 		  answers = session.createQuery(hql).list();
 		  return answers;
+	  }
+	  
+	  public boolean delAnswerById(String answerId){
+		  boolean flag= true;
+		  Session session = sessionFactory.getCurrentSession();
+		  String hql ="update DtAnswer set answerIsdel ='1' where answerId = '"+answerId+"'";
+		  int count = session.createQuery(hql).executeUpdate();
+		  System.out.println("count=="+count);
+		  if(count<=0){
+			  flag=false;
+		  }
+		  return flag;
+	  }
+	  public boolean setWrong(String answerId,String status){
+		  boolean flag= true;
+		  Session session = sessionFactory.getCurrentSession();
+		  String hql ="update DtAnswer set answerIsworg ='"+status+"' where answerId = '"+answerId+"'";
+		  int count = session.createQuery(hql).executeUpdate();
+		  if(count<=0){
+			  flag=false;
+		  }
+		  return flag;
 	  }
 }

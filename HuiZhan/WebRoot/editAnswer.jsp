@@ -81,7 +81,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-danger addel-delete" >删除</button>
                             <button type="button" class="btn btn-danger addel-save" onclick="saveAnswer('${questionId}',this)">保存</button>
-                            <button type="button" class="btn btn-danger" disabled="disabled" >设为正确答案</button>
+                            
+                            
+                            <c:if test="${answer.answerIsworg==''||answer.answerIsworg==null||answer.answerIsworg=='1' }">
+                            <button type="button" class="btn btn-danger" bid="${answer.answerId }" onclick ="setWrong(this,0)" <c:if test="${answer.answerId==''||answer.answerId==null }"> disabled="disabled"</c:if>  >设为正确答案</button>
+                            </c:if>
+                             <c:if test="${answer.answerIsworg!=''&&answer.answerIsworg!=null&&answer.answerIsworg=='0' }">
+                            <button type="button" class="btn btn-danger" bid="${answer.answerId }" onclick ="setWrong(this,1)" <c:if test="${answer.answerId==''||answer.answerId==null }"> disabled="disabled"</c:if>  >取消正确答案</button>
+                            </c:if>
+                            
+                            
                         </span>
                         
                     </div>
@@ -96,7 +105,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-danger addel-delete" >删除</button>
                             <button type="button" class="btn btn-danger addel-save" onclick="saveAnswer('${questionId}',this)">保存</button>
-                            <button type="button" class="btn btn-danger" disabled="disabled" >设为正确答案</button>
+                            <button type="button" class="btn btn-danger" bid="" onclick ="setWrong(this,0)"   disabled="disabled"   >设为正确答案</button>
                         </span>
                         
                     </div>
@@ -143,9 +152,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
             }
         }).on('addel:delete', function (event) {
-            if (!window.confirm('确定要删除该答案吗: ' + '"' + event.target.find(':input').val() + '"?')) {
-                console.log('Deletion prevented!');
-                event.preventDefault();
+            if (window.confirm('确定要删除该答案吗: ' + '"' + event.target.find(':input').val() + '"?')) {
+                 var answerid =event.target.find(':input').attr("id");
+                  $.ajax({
+			            type: "POST",
+			            url: "sysAction_delAnswerById",
+			            async: true,
+			            data: {
+			                answerId:answerid
+			            },
+			            success: function (datas) {
+			                if(datas=="true"){
+			                  alert('删除成功');
+			                  event.preventDefault();
+			                }else{
+			                	alert('删除失败');
+			                }
+			            }
+        		});
+               
             }
         });
     });
@@ -155,6 +180,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	var answerid = $(obj).parent().parent('.input-group').find('input').eq(0).attr("id");
     	var iswrong = $(obj).parent().parent('.input-group').find('input').eq(0).attr("iswrong");
     	var isdel = $(obj).parent().parent('.input-group').find('input').eq(0).attr("isdel");
+    	if(answerval!=''&&answerval!=null){
     	 $.ajax({
             type: "POST",
             url: "sysAction_saveAnswer",
@@ -170,11 +196,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 if(datas!=""&&datas!=null){
                 alert('保存成功');
                 $(obj).parent().parent('.input-group').find('input').eq(0).attr("id",datas);
+                $(obj).next().removeAttr("disabled"); 
+                $(obj).next().attr("bid",datas); 
                 }else{
                 	alert('保存失败');
                 }
             }
         });
+        }else{
+        	alert("答案内容不能为空");
+        }
     }
+    
+   function setWrong(obj,status){
+   		var answerId = $(obj).attr("bid");
+      $.ajax({
+            type: "POST",
+            url: "sysAction_setWrong",
+            async: false,
+            data: {
+                answerId:answerId,
+                iswrong:status
+            },
+            success: function (datas) {
+                if(datas=="true"){
+                	alert('设置成功');
+                	if(status=='0'){
+                	$(":button[bid="+answerId+"]").replaceWith("<button type='button' class='btn btn-danger' bid='"+answerId+"' onclick ='setWrong(this,1)'    >取消正确答案</button>");
+                	}else{
+                	$(":button[bid="+answerId+"]").replaceWith("<button type='button' class='btn btn-danger' bid='"+answerId+"' onclick ='setWrong(this,0)'   >设为正确答案</button>");
+                	}
+                	
+                }else{
+                	alert('设置失败');
+                }
+            }
+        });
+   }
 </script>
 </html>

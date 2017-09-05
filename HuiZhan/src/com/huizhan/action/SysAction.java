@@ -95,7 +95,6 @@ public class SysAction {
 	        try {
 	            printWriter = response.getWriter();
 	            String answerid =sysService.saveAnswer(questionId, answerval, answerId, iswrong, isdel);
-	            System.out.println("answerid=="+answerid);
 	            printWriter.print(answerid+"");
 	        } catch (Exception de) {
 	            de.printStackTrace();
@@ -104,7 +103,36 @@ public class SysAction {
 	        }
 	}
 	
-	
+	public void delAnswerById(){
+		HttpServletResponse response = ServletActionContext.getResponse();
+        response.setContentType("text/html;charset=utf-8");
+	     	response.setCharacterEncoding("utf-8");
+	        PrintWriter printWriter = null;
+	        try {
+	            printWriter = response.getWriter();
+	            boolean flag =sysService.delAnswerById(answerId);
+	            printWriter.print(flag+"");
+	        } catch (Exception de) {
+	            de.printStackTrace();
+	        } finally {
+	            printWriter.close();
+	        }
+	}
+	public void setWrong(){
+		HttpServletResponse response = ServletActionContext.getResponse();
+        response.setContentType("text/html;charset=utf-8");
+	     	response.setCharacterEncoding("utf-8");
+	        PrintWriter printWriter = null;
+	        try {
+	            printWriter = response.getWriter();
+	            boolean flag =sysService.setWrong(answerId, iswrong);
+	            printWriter.print(flag+"");
+	        } catch (Exception de) {
+	            de.printStackTrace();
+	        } finally {
+	            printWriter.close();
+	        }
+	}
 
 	public String getUserName() {
 		return UserName;
