@@ -25,6 +25,7 @@ public class CreateFile {
     	try {
     		RearProperties reader = new RearProperties();
     		String targetPath =reader.getValue("path.properties", "FILE_PATH");
+    		System.out.println("upload path =="+targetPath);
     		String fileNames = "";
     		   try { 
     			   for(int i=0;i<file.length;i++){
@@ -36,9 +37,11 @@ public class CreateFile {
     	            	FileUtils.copyFile(file[i], saveFile);
     	            	fileNames+=newFileName+",";
     			   }
+    			   System.out.println("upload success");
     			   fileNames=fileNames.substring(0,fileNames.length()-1);
-            	printWriter.write(fileNames);
+    			   printWriter.write(fileNames);
                 } catch (IOException e) {  
+                	 System.out.println("upload failed");
                 	e.printStackTrace();
                 }  
 		}  catch (Exception e) {

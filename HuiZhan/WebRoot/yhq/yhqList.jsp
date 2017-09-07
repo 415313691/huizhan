@@ -33,11 +33,8 @@ String targetPath =reader.getValue("path.properties", "read_file");
 
 <link href="<%=basePath %>source/css/atom-style.css" rel="stylesheet">
 <link href="<%=basePath %>source/css/minimal.css" rel="stylesheet">
-<link href="<%=basePath %>source/date/css/bootstrap-datetimepicker.css" rel="stylesheet">
-<script type="text/javascript" src="<%=basePath %>source/date/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="<%=basePath %>source/date/js/bootstrap.min.js"></script>
-<script src="<%=basePath %>source/date/js/moment-with-locales.js"></script>
-<script src="<%=basePath %>source/date/js/bootstrap-datetimepicker.js"></script>
+
+<script type="text/javascript" src="<%=basePath %>source/js/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -60,9 +57,9 @@ String targetPath =reader.getValue("path.properties", "read_file");
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div data-original-title="" class="panel-heading">
-                        <h2><i class="fa fa-user"></i><span class="break"></span>活动列表</h2>
-                        <a href="actAction_before_editActiviy" class="btn btn-danger" style=" float:right; margin-top:3px;">
-                         新增活动
+                        <h2><i class="fa fa-user"></i><span class="break"></span>优惠券列表</h2>
+                        <a href="yhqAction_before_editYhq" class="btn btn-danger" style=" float:right; margin-top:3px;">
+                         		新增优惠券
                         </a>
                     </div>
                     
@@ -75,10 +72,10 @@ String targetPath =reader.getValue("path.properties", "read_file");
                                 <th>活动名称</th>
                                 <th>开始时间</th>
                                 <th>结束时间</th>
-                                <th>活动图片</th>
-                                <th>难度</th>
-                                <th>类型(红包/优惠券)</th>
-                               	<th>状态</th>
+                                <th>优惠券名称</th>
+                                <th>店名</th>
+                                <th>联系电话</th>
+                               	<th>优惠券数量</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -86,29 +83,17 @@ String targetPath =reader.getValue("path.properties", "read_file");
                              <c:forEach items="${page.result}" var="obj">
                              <tr role="row">
                                      <td>${obj.activityName }</td>
-                                     <td><fmt:formatDate value="${obj.activityBegintime }" type="date" dateStyle="full"/></td>
-                                     <td><fmt:formatDate value="${obj.activityEndtime }" type="date" dateStyle="full"/></td>
-                                     <td><img src="<%=targetPath%>${obj.activityPic}" width="60px" height="60px"></td>
-                                     <td><c:if test="${obj.activityClass=='0' }">简单</c:if>
-                                     	 <c:if test="${obj.activityClass=='1' }">一般</c:if>
-                                     	 <c:if test="${obj.activityClass=='2' }">困难</c:if>
-                                     	 <c:if test="${obj.activityClass=='3' }">科普</c:if>
-                                     </td>
-                                     
-                                     
-                                     <td><c:if test="${obj.activityIstype=='0' }">红包</c:if>
-                                     	 <c:if test="${obj.activityIstype=='1' }">优惠券</c:if></td>
-                                     	 
-                                     <td><c:if test="${obj.activityIsdel=='0' }">可用</c:if>
-                                     	 <c:if test="${obj.activityIsdel=='1' }">不可用</c:if></td>
+                                     <td><fmt:formatDate value="${obj.yhqBegintime }" type="date" dateStyle="full"/></td>
+                                     <td><fmt:formatDate value="${obj.yhqEndtime }" type="date" dateStyle="full"/></td>
+                                     <td>${obj.yhqName }</td>
+                                     <td>${obj.yhqCompany }</td>
+                                     <td>${obj.yhqPhone }</td>
+                                     <td>${obj.yhqCount }</td>
                                     <td>
-                                        <a href="actAction_delActivity?id=${obj.activityId }" onclick="if(confirm('确认要设置为不可用吗？')==false)return false;" class="btn btn-success"  title="删除">
+                                        <a href="yhqAction_delYhq?id=${obj.yhqId }" onclick="if(confirm('确认要删除吗？')==false)return false;" class="btn btn-success"  title="删除">
                                             <i class="fa fa-copy"></i>
                                         </a>
-                                        <a href="actAction_before_editActiviy?id=${obj.activityId }" class="btn btn-info" title="编辑">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                         <a href="actAction_findPicByActId?id=${obj.activityId }" class="btn btn-info" title="管理问题图片">
+                                        <a href="yhqAction_before_editYhq?id=${obj.yhqId }" class="btn btn-info" title="编辑">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </td>
@@ -117,7 +102,7 @@ String targetPath =reader.getValue("path.properties", "read_file");
                             </tbody>
                             </table>
                           <jsp:include page="../public/page.jsp"/>
-                            <form action="<%=basePath%>actAction_findAllActivitys" method="post" id="pageForm">
+                            <form action="<%=basePath%>yhqAction_findAllYhq" method="post" id="pageForm">
        					 	<input type="hidden" name="currentPage" id="curPage" />
     						</form>
                         </div><!--row-->            

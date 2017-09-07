@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -31,6 +32,8 @@ public class DtYhq implements java.io.Serializable {
 	private Integer yhqCount;
 	private Integer yhqRest;
 	private String yhqDesc;
+	
+	private String activityName;
 
 	// Constructors
 
@@ -165,5 +168,15 @@ public class DtYhq implements java.io.Serializable {
 	public void setYhqDesc(String yhqDesc) {
 		this.yhqDesc = yhqDesc;
 	}
+	@Transient
+	public String getActivityName() {
+		return activityName;
+	}
 
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+
+	
+	
 }

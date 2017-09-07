@@ -49,6 +49,24 @@
              <result name="del_ok" type="redirectAction">actAction_findAllActivitys</result>
              <result name="pic_ok">/activity/picList.jsp</result>
         </action>
+        
+          <action name="yhqAction_*" class="yhqAction" method="{1}">
+             <result name="allyhq_ok">/yhq/yhqList.jsp</result>
+             <result name="before_ok">/yhq/editYhq.jsp</result>
+             <result name="save_ok" type="redirectAction">yhqAction_findAllYhq</result>
+             <result name="del_ok" type="redirectAction">yhqAction_findAllYhq</result>
+        </action>
+        <action name="adAction_*" class="adAction" method="{1}">
+        	<result name="ads_ok">/ad/adList.jsp</result>
+        	<result name="before_ok">/ad/editAd.jsp</result>  
+        	<result name="save_ok" type="redirectAction">adAction_findAllAds</result>  
+        </action>
+        
+          <action name="userAction_*" class="userAction" method="{1}">
+        	 <result name="users_ok">/user/userList.jsp</result> 
+        	 <result name="reward_ok">/user/rewardList.jsp</result>
+        	 <result name="yhq_ok">/user/yhqList.jsp</result>
+        </action>
     </package>
      
 </struts>

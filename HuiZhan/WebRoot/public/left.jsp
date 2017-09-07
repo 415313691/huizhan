@@ -7,12 +7,12 @@
         	
         </li>
         <li><a href="actAction_findAllActivitys"><i class="fa fa-calendar-o"></i><span>活动</span></a></li>
-        <li><a href="myClients.html"><i class="fa fa-users"></i><span>优惠券信息</span></a></li>
+        <li><a href="yhqAction_findAllYhq"><i class="fa fa-users"></i><span>优惠券信息</span></a></li>
         <li class="sub">
-            <a href="feedback.html"><i class="fa fa-pencil"></i><span>广告管理</span></a>
+            <a href="adAction_findAllAds"><i class="fa fa-pencil"></i><span>广告管理</span></a>
         </li>
          <li class="sub">
-            <a href="perfect-Information.html"><i class="fa fa-pencil-square-o"></i><span>会员列表</span></a>
+            <a href="userAction_findAllUsers"><i class="fa fa-pencil-square-o"></i><span>会员列表</span></a>
         </li>
     </ul>
     <!--navigation end--> 

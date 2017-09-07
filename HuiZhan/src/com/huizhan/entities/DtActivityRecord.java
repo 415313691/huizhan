@@ -1,15 +1,10 @@
 package com.huizhan.entities;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -29,9 +24,6 @@ public class DtActivityRecord implements java.io.Serializable {
 	private Timestamp arecordTime;
 	private String arecordClassid;
 	private Double arecordAccuracy;
-	private Set<DtYhqRecord> dtYhqRecords = new HashSet<DtYhqRecord>(0);
-	private Set<DtRewardDetail> dtRewardDetails = new HashSet<DtRewardDetail>(0);
-	private Set<DtUserAnswer> dtUserAnswers = new HashSet<DtUserAnswer>(0);
 
 	// Constructors
 
@@ -46,18 +38,13 @@ public class DtActivityRecord implements java.io.Serializable {
 
 	/** full constructor */
 	public DtActivityRecord(String arecordId, String activityId, String userId,
-			Timestamp arecordTime, String arecordClassid,
-			Double arecordAccuracy, Set<DtYhqRecord> dtYhqRecords,
-			Set<DtRewardDetail> dtRewardDetails, Set<DtUserAnswer> dtUserAnswers) {
+			Timestamp arecordTime, String arecordClassid, Double arecordAccuracy) {
 		this.arecordId = arecordId;
 		this.activityId = activityId;
 		this.userId = userId;
 		this.arecordTime = arecordTime;
 		this.arecordClassid = arecordClassid;
 		this.arecordAccuracy = arecordAccuracy;
-		this.dtYhqRecords = dtYhqRecords;
-		this.dtRewardDetails = dtRewardDetails;
-		this.dtUserAnswers = dtUserAnswers;
 	}
 
 	// Property accessors
@@ -116,33 +103,6 @@ public class DtActivityRecord implements java.io.Serializable {
 
 	public void setArecordAccuracy(Double arecordAccuracy) {
 		this.arecordAccuracy = arecordAccuracy;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "dtActivityRecord")
-	public Set<DtYhqRecord> getDtYhqRecords() {
-		return this.dtYhqRecords;
-	}
-
-	public void setDtYhqRecords(Set<DtYhqRecord> dtYhqRecords) {
-		this.dtYhqRecords = dtYhqRecords;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "dtActivityRecord")
-	public Set<DtRewardDetail> getDtRewardDetails() {
-		return this.dtRewardDetails;
-	}
-
-	public void setDtRewardDetails(Set<DtRewardDetail> dtRewardDetails) {
-		this.dtRewardDetails = dtRewardDetails;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "dtActivityRecord")
-	public Set<DtUserAnswer> getDtUserAnswers() {
-		return this.dtUserAnswers;
-	}
-
-	public void setDtUserAnswers(Set<DtUserAnswer> dtUserAnswers) {
-		this.dtUserAnswers = dtUserAnswers;
 	}
 
 }

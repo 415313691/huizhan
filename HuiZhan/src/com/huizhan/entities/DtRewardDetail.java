@@ -3,12 +3,10 @@ package com.huizhan.entities;
 import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,13 +20,14 @@ public class DtRewardDetail implements java.io.Serializable {
 	// Fields
 
 	private String rewardId;
-	private DtActivityRecord dtActivityRecord;
+	private String arecordId;
 	private String rewardTypeid;
 	private Double rewardMoney;
 	private Timestamp rewardTime;
 	private String userId;
 	private String rewardState;
 
+	private String activityName;
 	// Constructors
 
 	/** default constructor */
@@ -41,11 +40,11 @@ public class DtRewardDetail implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public DtRewardDetail(String rewardId, DtActivityRecord dtActivityRecord,
+	public DtRewardDetail(String rewardId, String arecordId,
 			String rewardTypeid, Double rewardMoney, Timestamp rewardTime,
 			String userId, String rewardState) {
 		this.rewardId = rewardId;
-		this.dtActivityRecord = dtActivityRecord;
+		this.arecordId = arecordId;
 		this.rewardTypeid = rewardTypeid;
 		this.rewardMoney = rewardMoney;
 		this.rewardTime = rewardTime;
@@ -66,14 +65,13 @@ public class DtRewardDetail implements java.io.Serializable {
 		this.rewardId = rewardId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "arecord_id")
-	public DtActivityRecord getDtActivityRecord() {
-		return this.dtActivityRecord;
+	@Column(name = "arecord_id", length = 40)
+	public String getArecordId() {
+		return this.arecordId;
 	}
 
-	public void setDtActivityRecord(DtActivityRecord dtActivityRecord) {
-		this.dtActivityRecord = dtActivityRecord;
+	public void setArecordId(String arecordId) {
+		this.arecordId = arecordId;
 	}
 
 	@Column(name = "reward_typeid", length = 40)
@@ -120,5 +118,15 @@ public class DtRewardDetail implements java.io.Serializable {
 	public void setRewardState(String rewardState) {
 		this.rewardState = rewardState;
 	}
+	@Transient
+	public String getActivityName() {
+		return activityName;
+	}
+
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+	
+	
 
 }

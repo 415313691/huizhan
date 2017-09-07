@@ -3,12 +3,10 @@ package com.huizhan.entities;
 import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,7 +20,7 @@ public class DtYhqRecord implements java.io.Serializable {
 	// Fields
 
 	private String yhqRecordId;
-	private DtActivityRecord dtActivityRecord;
+	private String arecordId;
 	private String userId;
 	private String yhqId;
 	private Timestamp yhqDatetime;
@@ -30,6 +28,10 @@ public class DtYhqRecord implements java.io.Serializable {
 	private String yhqIswriteoff;
 	private Timestamp yhqWriteoffdate;
 
+	private String activityName;
+	private String beginTime;
+	private String endTime;
+	private String yhqName;
 	// Constructors
 
 	/** default constructor */
@@ -42,11 +44,11 @@ public class DtYhqRecord implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public DtYhqRecord(String yhqRecordId, DtActivityRecord dtActivityRecord,
-			String userId, String yhqId, Timestamp yhqDatetime,
-			String yhqPassword, String yhqIswriteoff, Timestamp yhqWriteoffdate) {
+	public DtYhqRecord(String yhqRecordId, String arecordId, String userId,
+			String yhqId, Timestamp yhqDatetime, String yhqPassword,
+			String yhqIswriteoff, Timestamp yhqWriteoffdate) {
 		this.yhqRecordId = yhqRecordId;
-		this.dtActivityRecord = dtActivityRecord;
+		this.arecordId = arecordId;
 		this.userId = userId;
 		this.yhqId = yhqId;
 		this.yhqDatetime = yhqDatetime;
@@ -68,14 +70,13 @@ public class DtYhqRecord implements java.io.Serializable {
 		this.yhqRecordId = yhqRecordId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "arecord_id")
-	public DtActivityRecord getDtActivityRecord() {
-		return this.dtActivityRecord;
+	@Column(name = "arecord_id", length = 40)
+	public String getArecordId() {
+		return this.arecordId;
 	}
 
-	public void setDtActivityRecord(DtActivityRecord dtActivityRecord) {
-		this.dtActivityRecord = dtActivityRecord;
+	public void setArecordId(String arecordId) {
+		this.arecordId = arecordId;
 	}
 
 	@Column(name = "user_id", length = 40)
@@ -131,5 +132,40 @@ public class DtYhqRecord implements java.io.Serializable {
 	public void setYhqWriteoffdate(Timestamp yhqWriteoffdate) {
 		this.yhqWriteoffdate = yhqWriteoffdate;
 	}
+	@Transient
+	public String getActivityName() {
+		return activityName;
+	}
+
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+	@Transient
+	public String getBeginTime() {
+		return beginTime;
+	}
+
+	public void setBeginTime(String beginTime) {
+		this.beginTime = beginTime;
+	}
+	@Transient
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+	@Transient
+	public String getYhqName() {
+		return yhqName;
+	}
+
+	public void setYhqName(String yhqName) {
+		this.yhqName = yhqName;
+	}
+	
+	
+	
 
 }

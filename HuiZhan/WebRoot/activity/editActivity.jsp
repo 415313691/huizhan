@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>钢钢好用户后台管理</title>
+<title>用户后台管理</title>
  <link href="<%=basePath %>source/images/logo1.png" type="image/x-icon" rel="shortcut icon" />
 <!-- Bootstrap core CSS -->
 <link href="<%=basePath %>source/css/bootstrap.min.css" rel="stylesheet">
@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                         </div>
                          <div class="form-group">
-                            <label class="col-md-2 control-label">背景图片：</label>
+                            <label class="col-md-2 control-label">活动logo：</label>
                             <div class="col-md-5">
                             	<div class="input-group" style="position:relative;">
                                 	 <div id="fileUploadContent" class="fileUploadContent">
@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             
                              <div class="form-group">
-                            <label class="col-md-2 control-label">问题图片：</label>
+                            <label class="col-md-2 control-label">背景图片：</label>
                             <div class="col-md-5">
                             	<div class="input-group" style="position:relative;">
                                 	 <div id="fileUploadContent1" class="fileUploadContent">

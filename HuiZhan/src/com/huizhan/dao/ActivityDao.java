@@ -24,7 +24,7 @@ public class ActivityDao {
 	        Page page = new Page();
 	        List<DtActivity> activitys = new ArrayList<DtActivity>();
 	        try{
-	            String sql =" select * from dt_activity";
+	            String sql =" select * from dt_activity order by activity_addtime desc";
 	            Query query = session.createSQLQuery(sql).addEntity(DtActivity.class);
 	            query.setFirstResult((currentPageNum - 1) * pageSize);
 	            query.setMaxResults(pageSize);

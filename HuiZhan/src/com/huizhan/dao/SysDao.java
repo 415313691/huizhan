@@ -32,7 +32,7 @@ public class SysDao {
 	        Page page = new Page();
 	        List<DtQuestion> questions = new ArrayList<DtQuestion>();
 	        try{
-	            String sql =" select * from dt_question";
+	            String sql =" select * from dt_question order by question_id desc";
 	            Query query = session.createSQLQuery(sql).addEntity(DtQuestion.class);
 	            query.setFirstResult((currentPageNum - 1) * pageSize);
 	            query.setMaxResults(pageSize);

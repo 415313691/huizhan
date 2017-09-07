@@ -1,11 +1,14 @@
 package com.huizhan.entities;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -26,14 +29,15 @@ public class DtActivity implements java.io.Serializable {
 	private Integer activityRewardCount;
 	private Integer activityRestcount;
 	private Double activityRestmoney;
-	private Timestamp activityBegintime;
-	private Timestamp activityEndtime;
+	private Date activityBegintime;
+	private Date activityEndtime;
 	private String activityIsdel;
 	private String activityCompany;
 	private String activityPic;
 	private String activityClass;
 	private String activityIstype;
 	private String activityPics;
+	private Timestamp activityAddtime;
 
 	// Constructors
 
@@ -51,9 +55,10 @@ public class DtActivity implements java.io.Serializable {
 			Integer activityQuestionCount, Integer activityCounttime,
 			Double activityMoney, Integer activityRewardCount,
 			Integer activityRestcount, Double activityRestmoney,
-			Timestamp activityBegintime, Timestamp activityEndtime,
-			String activityIsdel, String activityCompany, String activityPic,
-			String activityClass, String activityIstype, String activityPics) {
+			Date activityBegintime, Date activityEndtime, String activityIsdel,
+			String activityCompany, String activityPic, String activityClass,
+			String activityIstype, String activityPics,
+			Timestamp activityAddtime) {
 		this.activityId = activityId;
 		this.activityName = activityName;
 		this.activityQuestionCount = activityQuestionCount;
@@ -70,6 +75,7 @@ public class DtActivity implements java.io.Serializable {
 		this.activityClass = activityClass;
 		this.activityIstype = activityIstype;
 		this.activityPics = activityPics;
+		this.activityAddtime = activityAddtime;
 	}
 
 	// Property accessors
@@ -148,21 +154,23 @@ public class DtActivity implements java.io.Serializable {
 		this.activityRestmoney = activityRestmoney;
 	}
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "activity_begintime", length = 0)
-	public Timestamp getActivityBegintime() {
+	public Date getActivityBegintime() {
 		return this.activityBegintime;
 	}
 
-	public void setActivityBegintime(Timestamp activityBegintime) {
+	public void setActivityBegintime(Date activityBegintime) {
 		this.activityBegintime = activityBegintime;
 	}
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "activity_endtime", length = 0)
-	public Timestamp getActivityEndtime() {
+	public Date getActivityEndtime() {
 		return this.activityEndtime;
 	}
 
-	public void setActivityEndtime(Timestamp activityEndtime) {
+	public void setActivityEndtime(Date activityEndtime) {
 		this.activityEndtime = activityEndtime;
 	}
 
@@ -218,6 +226,15 @@ public class DtActivity implements java.io.Serializable {
 
 	public void setActivityPics(String activityPics) {
 		this.activityPics = activityPics;
+	}
+
+	@Column(name = "activity_addtime", length = 0,insertable=false,updatable=false)
+	public Timestamp getActivityAddtime() {
+		return this.activityAddtime;
+	}
+
+	public void setActivityAddtime(Timestamp activityAddtime) {
+		this.activityAddtime = activityAddtime;
 	}
 
 }

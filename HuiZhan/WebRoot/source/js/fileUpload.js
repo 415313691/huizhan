@@ -557,6 +557,8 @@ var uploadEvent = {
         	$("#activityPics").val("");
         }else if(uploadId=='fileUploadContent'){
         	$("#activityPic").val("");
+        }else if(uploadId=='fileUploadContent2'){
+        	$("#adPic").val("");
         }
     }
 }
