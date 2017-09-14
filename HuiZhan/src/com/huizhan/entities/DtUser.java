@@ -26,6 +26,10 @@ public class DtUser implements java.io.Serializable {
 	private String pic;
 	private String userType;
 	private String userPass;
+	private String userRealname;
+	private String userAddress;
+	private String userWx;
+	private Integer userJifen;
 
 	// Constructors
 
@@ -41,7 +45,8 @@ public class DtUser implements java.io.Serializable {
 	/** full constructor */
 	public DtUser(String userId, String userName, String userPhone,
 			Timestamp userAddtime, String openid, String pic, String userType,
-			String userPass) {
+			String userPass, String userRealname, String userAddress,
+			String userWx, Integer userJifen) {
 		this.userId = userId;
 		this.userName = userName;
 		this.userPhone = userPhone;
@@ -50,6 +55,10 @@ public class DtUser implements java.io.Serializable {
 		this.pic = pic;
 		this.userType = userType;
 		this.userPass = userPass;
+		this.userRealname = userRealname;
+		this.userAddress = userAddress;
+		this.userWx = userWx;
+		this.userJifen = userJifen;
 	}
 
 	// Property accessors
@@ -126,6 +135,42 @@ public class DtUser implements java.io.Serializable {
 
 	public void setUserPass(String userPass) {
 		this.userPass = userPass;
+	}
+
+	@Column(name = "user_realname", length = 100)
+	public String getUserRealname() {
+		return this.userRealname;
+	}
+
+	public void setUserRealname(String userRealname) {
+		this.userRealname = userRealname;
+	}
+
+	@Column(name = "user_address", length = 1000)
+	public String getUserAddress() {
+		return this.userAddress;
+	}
+
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
+
+	@Column(name = "user_wx", length = 100)
+	public String getUserWx() {
+		return this.userWx;
+	}
+
+	public void setUserWx(String userWx) {
+		this.userWx = userWx;
+	}
+
+	@Column(name = "user_jifen")
+	public Integer getUserJifen() {
+		return this.userJifen;
+	}
+
+	public void setUserJifen(Integer userJifen) {
+		this.userJifen = userJifen;
 	}
 
 }
