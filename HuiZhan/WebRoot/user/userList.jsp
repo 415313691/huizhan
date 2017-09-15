@@ -72,20 +72,25 @@ String targetPath =reader.getValue("path.properties", "read_file");
                                 <th>注册时间</th>
                                 <th>openid</th>
                                	<th>头像</th>
+                               	<th>微信号</th>
+                               	<th>拥有积分</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                              <c:forEach items="${page.result}" var="obj">
                              <tr role="row">
-                                     <td>${obj.userName }</td>
+                                     <td>${obj.userRealname }</td>
                                      <td>${obj.userPhone }</td>
                                      <td><fmt:formatDate value="${obj.userAddtime }" type="date" dateStyle="full"/></td>
                                      <td>${obj.openid }</td>
                                      <td>${obj.pic }</td>
+                                     <td>${obj.userWx }</td>
+                                     <td>${obj.userJifen }</td>
                                     <td>
-                                        <a href="userAction_findReward?id=${obj.userId }" class="btn btn-info" title="查看红包记录"><i class="fa fa-edit"></i></a>
-                                        <a href="userAction_findYhq?id=${obj.userId }" class="btn btn-info" title="查看优惠券记录"><i class="fa fa-edit"></i></a>
+                                        <a href="userAction_findReward?id=${obj.userId }" class="btn btn-success"  title="查看积分记录"><i class="fa fa-edit"></i></a>
+                                        <a href="userAction_findYhq?id=${obj.userId }"   class="btn btn-success" title="查看优惠券记录"><i class="fa fa-copy"></i></a>
+                                        <a href="userAction_findYhq?id=${obj.userId }"   class="btn btn-success" title="我的商品"><i class="fa fa-edit"></i></a>
                                     </td>
                                 </tr>
                              </c:forEach>

@@ -14,6 +14,9 @@
          <li class="sub">
             <a href="userAction_findAllUsers"><i class="fa fa-pencil-square-o"></i><span>会员列表</span></a>
         </li>
+        <li class="sub">
+            <a href="userAction_findAllUsers"><i class="fa fa-pencil-square-o"></i><span>商品管理</span></a>
+        </li>
     </ul>
     <!--navigation end--> 
 </div>

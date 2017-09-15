@@ -68,7 +68,7 @@ String targetPath =reader.getValue("path.properties", "read_file");
                             <thead>
                             <tr role="row">
                                 <th>活动名称</th>
-                                <th>红包额度</th>
+                                <th>积分数量</th>
                                 <th>奖励时间</th>
                                 <th>状态</th>
                             </tr>
@@ -80,8 +80,8 @@ String targetPath =reader.getValue("path.properties", "read_file");
                                      <td>${obj.rewardMoney }</td>
                                      <td><fmt:formatDate value="${obj.rewardTime }" type="date" dateStyle="full"/></td>
                                      <td>
-                                      <c:if test="${obj.rewardState=='0'}">发送成功</c:if>
-                                      <c:if test="${obj.rewardState=='1'}">发送失败</c:if>
+                                      <c:if test="${obj.rewardState=='0'}">已到帐</c:if>
+                                      <c:if test="${obj.rewardState=='1'}">未到账</c:if>
                                      </td>
                                      
                                 </tr>
