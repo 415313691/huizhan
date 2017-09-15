@@ -33,8 +33,11 @@ String targetPath =reader.getValue("path.properties", "read_file");
 
 <link href="<%=basePath %>source/css/atom-style.css" rel="stylesheet">
 <link href="<%=basePath %>source/css/minimal.css" rel="stylesheet">
-
-<script type="text/javascript" src="<%=basePath %>source/js/jquery-3.2.1.min.js"></script>
+<link href="<%=basePath %>source/date/css/bootstrap-datetimepicker.css" rel="stylesheet">
+<script type="text/javascript" src="<%=basePath %>source/date/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<%=basePath %>source/date/js/bootstrap.min.js"></script>
+<script src="<%=basePath %>source/date/js/moment-with-locales.js"></script>
+<script src="<%=basePath %>source/date/js/bootstrap-datetimepicker.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -57,8 +60,10 @@ String targetPath =reader.getValue("path.properties", "read_file");
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div data-original-title="" class="panel-heading">
-                        <h2><i class="fa fa-user"></i><span class="break"></span>会员列表</h2>
-                        
+                        <h2><i class="fa fa-user"></i><span class="break"></span>产品列表</h2>
+                        <a href="productAction_beforeEdit_product" class="btn btn-danger" style=" float:right; margin-top:3px;">
+                         		新增产品
+                        </a>
                     </div>
                     
                     <div class="panel-body">
@@ -67,37 +72,38 @@ String targetPath =reader.getValue("path.properties", "read_file");
                             <table id="datatable" class="table table-striped table-bordered bootstrap-datatable" cellspacing="0" width="100%">
                             <thead>
                             <tr role="row">
-                                <th>会员名称</th>
-                                <th>会员电话</th>
-                                <th>注册时间</th>
-                                <th>openid</th>
-                               	<th>头像</th>
-                               	<th>微信号</th>
-                               	<th>拥有积分</th>
+                                <th>产品名称</th>
+                                <th>所需金币</th>
+                                <th>数量</th>
+                                <th>产品图片</th>
+                               	<th>状态</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                              <c:forEach items="${page.result}" var="obj">
                              <tr role="row">
-                                     <td>${obj.userRealname }</td>
-                                     <td>${obj.userPhone }</td>
-                                     <td><fmt:formatDate value="${obj.userAddtime }" type="date" dateStyle="full"/></td>
-                                     <td>${obj.openid }</td>
-                                     <td>${obj.pic }</td>
-                                     <td>${obj.userWx }</td>
-                                     <td>${obj.userJifen }</td>
+                                     <td>${obj.productName }</td>
+                                     <td>${obj.productPrice }</td>
+                                     <td>${obj.productCount }</td>
+                                     <td><img src="<%=targetPath%>${obj.productPic}" width="60px" height="60px"></td>
+                            
+                                     <td><c:if test="${obj.productStatus=='0' }">上架中</c:if>
+                                     	 <c:if test="${obj.productStatus=='1' }">已下架</c:if></td>
                                     <td>
-                                        <a href="userAction_findReward?id=${obj.userId }" class="btn btn-success"  title="查看积分记录"><i class="fa fa-edit"></i></a>
-                                        <a href="userAction_findYhq?id=${obj.userId }"   class="btn btn-success" title="查看优惠券记录"><i class="fa fa-copy"></i></a>
-                                        <a href="userAction_findProduct?id=${obj.userId }"   class="btn btn-success" title="商品兑换记录"><i class="fa fa-edit"></i></a>
+                                        <a href="productAction_deleteProduct?id=${obj.productId }" onclick="if(confirm('确认要下架该商品吗？')==false)return false;" class="btn btn-success"  title="下架">
+                                            <i class="fa fa-copy"></i>
+                                        </a>
+                                        <a href="productAction_beforeEdit_product?id=${obj.productId }" class="btn btn-info" title="编辑">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
                                     </td>
                                 </tr>
                              </c:forEach>
                             </tbody>
                             </table>
                           <jsp:include page="../public/page.jsp"/>
-                            <form action="<%=basePath%>userAction_findAllUsers" method="post" id="pageForm">
+                            <form action="<%=basePath%>productAction_findAllProduct" method="post" id="pageForm">
        					 	<input type="hidden" name="currentPage" id="curPage" />
     						</form>
                         </div><!--row-->            

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,6 +23,10 @@ public class HzProductUser implements java.io.Serializable {
 	private String productId;
 	private String userId;
 	private Timestamp puDate;
+	
+	private String realName;
+	private String productName;
+	private String productPrice;
 
 	// Constructors
 
@@ -82,5 +87,31 @@ public class HzProductUser implements java.io.Serializable {
 	public void setPuDate(Timestamp puDate) {
 		this.puDate = puDate;
 	}
+	@Transient
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+	@Transient
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	@Transient
+	public String getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(String productPrice) {
+		this.productPrice = productPrice;
+	}
+	
+	
 
 }

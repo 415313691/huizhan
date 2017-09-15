@@ -66,6 +66,14 @@
         	 <result name="users_ok">/user/userList.jsp</result> 
         	 <result name="reward_ok">/user/rewardList.jsp</result>
         	 <result name="yhq_ok">/user/yhqList.jsp</result>
+        	 <result name="product_ok">/user/productList.jsp</result>
+        </action>
+        
+        <action name="productAction_*" class="productAction" method="{1}">
+        	<result name="products_ok">/production/productionList.jsp</result>
+        	<result name="before_ok">/production/editProduction.jsp</result>
+        	<result name="save_ok" type="redirectAction">productAction_findAllProduct</result>
+        	<result name="del_ok" type="redirectAction">productAction_findAllProduct</result>
         </action>
     </package>
      

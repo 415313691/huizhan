@@ -73,13 +73,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div> 
                         
                         <div class="form-group">
-                            <label class="col-md-2 control-label">红包金额：</label>
+                            <label class="col-md-2 control-label">金币：</label>
                             <div class="col-md-4">
                                 <input name="activity.activityMoney" type="text" id="activityMoney" class="form-control" value="${activity.activityMoney }">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">红包数量：</label>
+                            <label class="col-md-2 control-label">金币数量：</label>
                             <div class="col-md-4">
                                 <input name="activity.activityRewardCount" type="text" id="activityRewardCount" class="form-control" value="${activity.activityRewardCount }">
                             </div>
@@ -127,9 +127,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                         </div>
                           <div class="form-group">
-                            <label class="col-md-2 control-label">类型(红包/优惠券)：</label>
+                            <label class="col-md-2 control-label">类型(金币/优惠券)：</label>
                             <div class="col-md-4">
-                                <input type="radio" name="activity.activityIstype" <c:if test="${activity.activityIstype=='0'||activity.activityIstype==''||activity.activityIstype==null }">checked="checked" </c:if>  value="0"/>红包
+                                <input type="radio" name="activity.activityIstype" <c:if test="${activity.activityIstype=='0'||activity.activityIstype==''||activity.activityIstype==null }">checked="checked" </c:if>  value="0"/>金币
                                 <input type="radio" name="activity.activityIstype" <c:if test="${activity.activityIstype=='1' }">checked="checked" </c:if>  value="1"/>优惠券
                             </div>
                         </div>

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 import com.huizhan.entities.DtRewardDetail;
 import com.huizhan.entities.DtUser;
 import com.huizhan.entities.DtYhqRecord;
+import com.huizhan.entities.HzProductUser;
+import com.huizhan.entities.HzProduction;
 import com.huizhan.util.Page;
 
 @Repository("userdao")
@@ -94,6 +96,30 @@ public class UserDao {
 	            	records.add(record);
 	            }
 	            page = new Page(currentPageNum, this.findTotal(sql), pageSize, records);
+	        }catch(Exception de){
+	            de.printStackTrace();
+	            throw  new RuntimeException();
+	        }
+	        return page;
+	 }
+	 public Page findMyProduct(String userId,int currentPageNum, int pageSize){
+		 Session session = sessionFactory.getCurrentSession();
+	        Page page = new Page();
+	        try{
+	            String sql =" select pu.*,p.product_name,u.user_realname,p.product_price from  hz_product_user pu LEFT JOIN hz_production p on pu.product_id = p.product_id LEFT JOIN dt_user u ON pu.user_id = u.user_id where pu.user_id = '"+userId+"' ";
+	            Query query = session.createSQLQuery(sql).addEntity(HzProductUser.class).addScalar("p.product_name").addScalar("u.user_realname").addScalar("p.product_price");
+	            query.setFirstResult((currentPageNum - 1) * pageSize);
+	            query.setMaxResults(pageSize);
+	            List<Object[]> objs = query.list();
+	            List<HzProductUser> pus = new ArrayList<HzProductUser>();
+	            for(Object[] obj:objs){
+	            	HzProductUser pu = (HzProductUser)obj[0];
+	            	pu.setProductName(obj[1]==null?"":obj[1]+"");
+	            	pu.setRealName(obj[2]==null?"":obj[2]+"");
+	            	pu.setProductPrice(obj[3]==null?"":obj[3]+"");
+	            	pus.add(pu);
+	            }
+	            page = new Page(currentPageNum, this.findTotal(sql), pageSize, pus);
 	        }catch(Exception de){
 	            de.printStackTrace();
 	            throw  new RuntimeException();

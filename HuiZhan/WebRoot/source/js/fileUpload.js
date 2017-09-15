@@ -560,6 +560,9 @@ var uploadEvent = {
         }else if(uploadId=='fileUploadContent2'){
         	$("#adPic").val("");
         }
+        else if(uploadId=='fileUploadContent3'){
+        	$("#productPic").val("");
+        }
     }
 }
 

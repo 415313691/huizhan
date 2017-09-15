@@ -57,6 +57,19 @@ public class UserAction {
 		return "yhq_ok";
 	}
 	
+	public String findProduct(){
+		int pageSize = 10;// 每页显示数据量
+        int currentPageNum = 1;// 当前页码
+
+        String currentPage = this.currentPage;
+        if (currentPage != null && !"".equals(currentPage)) {
+            currentPageNum = Integer.parseInt(currentPage);
+        }
+        Page page = userService.findMyProduct(id, currentPageNum, pageSize);
+        ActionContext.getContext().put("page", page);
+		return "product_ok";
+	}
+	
 	public String getCurrentPage() {
 		return currentPage;
 	}

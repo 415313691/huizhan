@@ -77,7 +77,7 @@ String targetPath =reader.getValue("path.properties", "read_file");
                                 <th>结束时间</th>
                                 <th>活动图片</th>
                                 <th>难度</th>
-                                <th>类型(红包/优惠券)</th>
+                                <th>类型(金币/优惠券)</th>
                                	<th>状态</th>
                                 <th>操作</th>
                             </tr>
@@ -96,7 +96,7 @@ String targetPath =reader.getValue("path.properties", "read_file");
                                      </td>
                                      
                                      
-                                     <td><c:if test="${obj.activityIstype=='0' }">红包</c:if>
+                                     <td><c:if test="${obj.activityIstype=='0' }">金币</c:if>
                                      	 <c:if test="${obj.activityIstype=='1' }">优惠券</c:if></td>
                                      	 
                                      <td><c:if test="${obj.activityIsdel=='0' }">可用</c:if>

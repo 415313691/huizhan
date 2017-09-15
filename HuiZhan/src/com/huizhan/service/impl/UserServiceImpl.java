@@ -36,4 +36,12 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;
 	}
+	 public Page findMyProduct(String userId,int currentPageNum, int pageSize){
+		 try{
+			return userdao.findMyProduct(userId, currentPageNum, pageSize);
+		 }catch(Exception de){
+			 de.printStackTrace();
+		 }
+		 return null;
+	 }
 }

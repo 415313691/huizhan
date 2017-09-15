@@ -57,7 +57,7 @@ String targetPath =reader.getValue("path.properties", "read_file");
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div data-original-title="" class="panel-heading">
-                        <h2><i class="fa fa-user"></i><span class="break"></span>会员列表</h2>
+                        <h2><i class="fa fa-user"></i><span class="break"></span>我的商品列表</h2>
                         
                     </div>
                     
@@ -67,37 +67,25 @@ String targetPath =reader.getValue("path.properties", "read_file");
                             <table id="datatable" class="table table-striped table-bordered bootstrap-datatable" cellspacing="0" width="100%">
                             <thead>
                             <tr role="row">
-                                <th>会员名称</th>
-                                <th>会员电话</th>
-                                <th>注册时间</th>
-                                <th>openid</th>
-                               	<th>头像</th>
-                               	<th>微信号</th>
-                               	<th>拥有积分</th>
-                                <th>操作</th>
+                                <th>商品名称</th>
+                                <th>用户名称</th>
+                                <th>商品金币</th>
+                                <th>获得时间</th>
                             </tr>
                             </thead>
                             <tbody>
                              <c:forEach items="${page.result}" var="obj">
                              <tr role="row">
-                                     <td>${obj.userRealname }</td>
-                                     <td>${obj.userPhone }</td>
-                                     <td><fmt:formatDate value="${obj.userAddtime }" type="date" dateStyle="full"/></td>
-                                     <td>${obj.openid }</td>
-                                     <td>${obj.pic }</td>
-                                     <td>${obj.userWx }</td>
-                                     <td>${obj.userJifen }</td>
-                                    <td>
-                                        <a href="userAction_findReward?id=${obj.userId }" class="btn btn-success"  title="查看积分记录"><i class="fa fa-edit"></i></a>
-                                        <a href="userAction_findYhq?id=${obj.userId }"   class="btn btn-success" title="查看优惠券记录"><i class="fa fa-copy"></i></a>
-                                        <a href="userAction_findProduct?id=${obj.userId }"   class="btn btn-success" title="商品兑换记录"><i class="fa fa-edit"></i></a>
-                                    </td>
+                                     <td>${obj.productName }</td>
+                                     <td>${obj.realName }</td>
+                                     <td>${obj.productPrice }</td>
+                                     <td><fmt:formatDate value="${obj.puDate }" type="date" dateStyle="full"/></td>
                                 </tr>
                              </c:forEach>
                             </tbody>
                             </table>
                           <jsp:include page="../public/page.jsp"/>
-                            <form action="<%=basePath%>userAction_findAllUsers" method="post" id="pageForm">
+                            <form action="<%=basePath%>userAction_findProduct" method="post" id="pageForm">
        					 	<input type="hidden" name="currentPage" id="curPage" />
     						</form>
                         </div><!--row-->            
