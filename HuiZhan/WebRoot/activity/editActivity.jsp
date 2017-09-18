@@ -72,16 +72,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                         </div> 
                         
-                        <div class="form-group">
+                       <!--   <div class="form-group">
                             <label class="col-md-2 control-label">金币：</label>
                             <div class="col-md-4">
                                 <input name="activity.activityMoney" type="text" id="activityMoney" class="form-control" value="${activity.activityMoney }">
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label class="col-md-2 control-label">金币数量：</label>
                             <div class="col-md-4">
-                                <input name="activity.activityRewardCount" type="text" id="activityRewardCount" class="form-control" value="${activity.activityRewardCount }">
+                                <input name="activity.activityJifen" type="text" id="activityJifen" class="form-control" value="${activity.activityJifen }">
                             </div>
                         </div>
                         <div class="form-group">

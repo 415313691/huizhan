@@ -25,10 +25,6 @@ public class DtActivity implements java.io.Serializable {
 	private String activityName;
 	private Integer activityQuestionCount;
 	private Integer activityCounttime;
-	private Double activityMoney;
-	private Integer activityRewardCount;
-	private Integer activityRestcount;
-	private Double activityRestmoney;
 	private Date activityBegintime;
 	private Date activityEndtime;
 	private String activityIsdel;
@@ -38,6 +34,7 @@ public class DtActivity implements java.io.Serializable {
 	private String activityIstype;
 	private String activityPics;
 	private Timestamp activityAddtime;
+	private Integer activityJifen;
 
 	// Constructors
 
@@ -53,20 +50,15 @@ public class DtActivity implements java.io.Serializable {
 	/** full constructor */
 	public DtActivity(String activityId, String activityName,
 			Integer activityQuestionCount, Integer activityCounttime,
-			Double activityMoney, Integer activityRewardCount,
-			Integer activityRestcount, Double activityRestmoney,
+			  Integer activityRewardCount,Integer activityRestcount, Double activityRestmoney,
 			Date activityBegintime, Date activityEndtime, String activityIsdel,
 			String activityCompany, String activityPic, String activityClass,
 			String activityIstype, String activityPics,
-			Timestamp activityAddtime) {
+			Timestamp activityAddtime,Integer activityJifen) {
 		this.activityId = activityId;
 		this.activityName = activityName;
 		this.activityQuestionCount = activityQuestionCount;
 		this.activityCounttime = activityCounttime;
-		this.activityMoney = activityMoney;
-		this.activityRewardCount = activityRewardCount;
-		this.activityRestcount = activityRestcount;
-		this.activityRestmoney = activityRestmoney;
 		this.activityBegintime = activityBegintime;
 		this.activityEndtime = activityEndtime;
 		this.activityIsdel = activityIsdel;
@@ -76,6 +68,7 @@ public class DtActivity implements java.io.Serializable {
 		this.activityIstype = activityIstype;
 		this.activityPics = activityPics;
 		this.activityAddtime = activityAddtime;
+		this.activityJifen=activityJifen;
 	}
 
 	// Property accessors
@@ -118,41 +111,6 @@ public class DtActivity implements java.io.Serializable {
 		this.activityCounttime = activityCounttime;
 	}
 
-	@Column(name = "activity_money", precision = 22, scale = 0)
-	public Double getActivityMoney() {
-		return this.activityMoney;
-	}
-
-	public void setActivityMoney(Double activityMoney) {
-		this.activityMoney = activityMoney;
-	}
-
-	@Column(name = "activity_reward_count")
-	public Integer getActivityRewardCount() {
-		return this.activityRewardCount;
-	}
-
-	public void setActivityRewardCount(Integer activityRewardCount) {
-		this.activityRewardCount = activityRewardCount;
-	}
-
-	@Column(name = "activity_restcount")
-	public Integer getActivityRestcount() {
-		return this.activityRestcount;
-	}
-
-	public void setActivityRestcount(Integer activityRestcount) {
-		this.activityRestcount = activityRestcount;
-	}
-
-	@Column(name = "activity_restmoney", precision = 22, scale = 0)
-	public Double getActivityRestmoney() {
-		return this.activityRestmoney;
-	}
-
-	public void setActivityRestmoney(Double activityRestmoney) {
-		this.activityRestmoney = activityRestmoney;
-	}
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "activity_begintime", length = 0)
@@ -236,5 +194,14 @@ public class DtActivity implements java.io.Serializable {
 	public void setActivityAddtime(Timestamp activityAddtime) {
 		this.activityAddtime = activityAddtime;
 	}
+	@Column(name = "activity_jifen")
+	public Integer getActivityJifen() {
+		return activityJifen;
+	}
+
+	public void setActivityJifen(Integer activityJifen) {
+		this.activityJifen = activityJifen;
+	}
+	
 
 }

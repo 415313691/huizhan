@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -61,6 +64,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                         </div> 
  
+       					 <div class="form-group">
+                            <label class="col-md-2 control-label">问题难度：</label>
+                            <div class="col-md-4">
+                                <select name="question.questionClass" id="questionClass" class="form-control">
+                                	<option  value="0" <c:if test="${question.questionClass=='0' }">selected="selected"</c:if>  >简单</option>
+                                	<option value="1" <c:if test="${question.questionClass=='1' }">selected="selected"</c:if> >一般</option>
+                                	<option value="2" <c:if test="${question.questionClass=='2' }">selected="selected"</c:if>>困难</option>
+                                	<option value="3" <c:if test="${question.questionClass=='3' }">selected="selected"</c:if>>科普</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-2 control-label"></div>
                             <div class="col-md-10">

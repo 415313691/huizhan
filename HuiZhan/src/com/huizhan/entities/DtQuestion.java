@@ -20,6 +20,7 @@ public class DtQuestion implements java.io.Serializable {
 	private String questionId;
 	private String questionTitle;
 	private String questionIsdel;
+	private String questionClass;
 
 	// Constructors
 
@@ -70,5 +71,14 @@ public class DtQuestion implements java.io.Serializable {
 	public void setQuestionIsdel(String questionIsdel) {
 		this.questionIsdel = questionIsdel;
 	}
+	@Column(name = "question_class", length = 1)
+	public String getQuestionClass() {
+		return questionClass;
+	}
+
+	public void setQuestionClass(String questionClass) {
+		this.questionClass = questionClass;
+	}
+	
 
 }

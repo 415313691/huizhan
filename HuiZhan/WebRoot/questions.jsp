@@ -82,6 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <tr role="row">
                                 <th>题目标题</th>
                                 <th>状态</th>
+                                <th>难度</th>
                                 <th>操作</th>
                                 <th>设置答案</th>
                             </tr>
@@ -93,6 +94,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <td><c:if test="${obj.questionIsdel=='0' }">可用</c:if>
                                     <c:if test="${obj.questionIsdel=='1' }">不可用</c:if>
                                     </td>
+                                        <td><c:if test="${obj.questionClass=='0' }">简单</c:if>
+                                     	 <c:if test="${obj.questionClass=='1' }">一般</c:if>
+                                     	 <c:if test="${obj.questionClass=='2' }">困难</c:if>
+                                     	 <c:if test="${obj.questionClass=='3' }">科普</c:if>
+                                     </td>
                                     <td>
                                         <a href="sysAction_delQuestion?id=${obj.questionId }" onclick="if(confirm('确认要设置为不可用吗？')==false)return false;" class="btn btn-success"  title="删除">
                                             <i class="fa fa-copy"></i>
