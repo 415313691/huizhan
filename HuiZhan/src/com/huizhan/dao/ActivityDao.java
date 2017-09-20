@@ -56,8 +56,32 @@ public class ActivityDao {
 	  public void saveActivity(DtActivity activity){
 		  Session session = sessionFactory.getCurrentSession();
 		  if(!"".equals(activity.getActivityId())&&activity.getActivityId()!=null){
+			  if("0".equals(activity.getActivityClass())){
+				  activity.setActivityQuestionCount(5);
+			  }
+			  if("1".equals(activity.getActivityClass())){
+				  activity.setActivityQuestionCount(10);	  
+				}
+			  if("2".equals(activity.getActivityClass())){
+				  activity.setActivityQuestionCount(15);	  
+				}
+			  if("3".equals(activity.getActivityClass())){
+				  activity.setActivityQuestionCount(5);  
+				}
 			  session.update(activity);
 		  }else{
+			  if("0".equals(activity.getActivityClass())){
+				  activity.setActivityQuestionCount(5);
+			  }
+			  if("1".equals(activity.getActivityClass())){
+				  activity.setActivityQuestionCount(10);	  
+				}
+			  if("2".equals(activity.getActivityClass())){
+				  activity.setActivityQuestionCount(15);	  
+				}
+			  if("3".equals(activity.getActivityClass())){
+				  activity.setActivityQuestionCount(5);  
+				}
 			  session.save(activity);
 		  }
 	  }
