@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <link href="source/css/atom-style.css" rel="stylesheet">
 <link href="source/css/minimal.css" rel="stylesheet">
-<script type="text/javascript" src="source/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<%=basePath %>source/js/jquery-3.2.1.min.js"></script>
 
 </head>
 <body>
@@ -96,12 +96,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                 </div>
                </c:forEach>
-		<div class="form-group addel-target">
+               
+			<div class="form-group addel-target">
                     <label for="person" class="control-label">
                         答案
                     </label>
                     <div class="input-group">
-                        <input type="text" id="" iswrong="" isdel="" name="contacts[]" class="form-control">
+                        <input type="text" id ="" iswrong="" isdel="" name="contacts[]" class="form-control">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-danger addel-delete" >删除</button>
                             <button type="button" class="btn btn-danger addel-save" onclick="saveAnswer('${questionId}',this)">保存</button>
@@ -110,6 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <button type="button" class="btn btn-success btn-block addel-add">
                         <i class="fa fa-plus"></i>
@@ -152,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
             }
         }).on('addel:delete', function (event) {
-            if (window.confirm('确定要删除该答案吗: ' + '"' + event.target.find(':input').val() + '"?')) {
+            if (window.confirm('确定要删除答案 ' + '"' + event.target.find(':input').val() + '"?')) {
                  var answerid =event.target.find(':input').attr("id");
                   $.ajax({
 			            type: "POST",
@@ -171,11 +173,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			            }
         		});
                
+            }else{
+            event.preventDefault();
             }
         });
     });
     
     function saveAnswer(questionId,obj){
+    	if(questionId==''||questionId==null){
+    		questionId = '${questionId}';
+    	}
     	var answerval = $(obj).parent().parent('.input-group').find('input').eq(0).val();
     	var answerid = $(obj).parent().parent('.input-group').find('input').eq(0).attr("id");
     	var iswrong = $(obj).parent().parent('.input-group').find('input').eq(0).attr("iswrong");
@@ -195,9 +202,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             success: function (datas) {
                 if(datas!=""&&datas!=null){
                 alert('保存成功');
-                $(obj).parent().parent('.input-group').find('input').eq(0).attr("id",datas);
+                $(obj).parent().parent('.input-group').find('input').eq(0).attr("id",datas.answerId);
+                $(obj).parent().parent('.input-group').find('input').eq(0).attr("iswrong",datas.answerIsworg);
+                $(obj).parent().parent('.input-group').find('input').eq(0).attr("isdel",datas.answerIsdel);
                 $(obj).next().removeAttr("disabled"); 
-                $(obj).next().attr("bid",datas); 
+                $(obj).next().attr("bid",datas.answerId); 
                 }else{
                 	alert('保存失败');
                 }
@@ -233,5 +242,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         });
    }
+   
+
 </script>
 </html>

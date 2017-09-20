@@ -57,10 +57,10 @@ public class SysServiceImpl implements SysService {
 			 de.printStackTrace();
 		 }
 	 }
-	 public String saveAnswer(String questionId,String val,String answerId,String iswrong,String isdel){
+	 public DtAnswer saveAnswer(String questionId,String val,String answerId,String iswrong,String isdel){
 		 try{
-			String answerid= sysdao.saveAnswer(questionId, val, answerId, iswrong, isdel);
-			return answerid;
+			  return sysdao.saveAnswer(questionId, val, answerId, iswrong, isdel);
+			
 		 }catch(Exception de){
 			 de.printStackTrace();
 		 }

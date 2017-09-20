@@ -85,26 +85,31 @@ public class SysDao {
 		session.createQuery(hql).executeUpdate();
 	 }
 
-	  public String saveAnswer(String questionId,String val,String answerId,String iswrong,String isdel){
+	  public DtAnswer saveAnswer(String questionId,String val,String answerId,String iswrong,String isdel){
 		  Session session = sessionFactory.getCurrentSession();
-		  String answerid =answerId;
+		  DtAnswer answer= null;
+		  try{
 		  if(!"".equals(answerId)&&answerId!=null){
-			  DtAnswer answer = new DtAnswer();
+			  answer = new DtAnswer();
+			  System.out.println("修改答案");
 			  answer.setAnswerId(answerId);
 			  answer.setAnswerContent(val);
 			  answer.setQuestionId(questionId);
-			  answer.setAnswerIsdel(isdel);
+			  answer.setAnswerIsdel("0");
 			  answer.setAnswerIsworg(iswrong);
 			  session.update(answer);
 		  }else{
-			  DtAnswer answer = new DtAnswer();
+			  System.out.println("保存答案");
+			  answer = new DtAnswer();
 			  answer.setAnswerContent(val);
 			  answer.setQuestionId(questionId);
 			  answer.setAnswerIsdel("0");
 			  session.save(answer);
-			  answerid = answer.getAnswerId();
 		  }
-		  return answerid;
+		  }catch(Exception de){
+			  de.printStackTrace();
+		  }
+		  return answer;
 	  }
 	  
 	  public List<DtAnswer> findAnswerByQId(String questionId){

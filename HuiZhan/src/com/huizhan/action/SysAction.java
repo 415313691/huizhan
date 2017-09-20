@@ -11,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.alibaba.fastjson.JSON;
 import com.huizhan.entities.DtAnswer;
 import com.huizhan.entities.DtQuestion;
 import com.huizhan.entities.DtUser;
@@ -89,13 +90,13 @@ public class SysAction {
 	
 	public void saveAnswer(){
 		HttpServletResponse response = ServletActionContext.getResponse();
-        response.setContentType("text/html;charset=utf-8");
+        response.setContentType("application/json;charset=utf-8");
 	     	response.setCharacterEncoding("utf-8");
 	        PrintWriter printWriter = null;
 	        try {
 	            printWriter = response.getWriter();
-	            String answerid =sysService.saveAnswer(questionId, answerval, answerId, iswrong, isdel);
-	            printWriter.print(answerid+"");
+	            DtAnswer answer =sysService.saveAnswer(questionId, answerval, answerId, iswrong, isdel);
+	            printWriter.print(JSON.toJSONString(answer));
 	        } catch (Exception de) {
 	            de.printStackTrace();
 	        } finally {

@@ -108,13 +108,21 @@ if (typeof jQuery === 'undefined') {
 
             // makes sure target is fully drawn before cloning
             $target.finish();
-
+            
+            alert($target.find(':input').attr("id"));
             for (var i = 0; i < amount; i++) {
 
                 var $clonedTarget = $target.clone();
+                //$clonedTarget.find(':input').attr("id","");
 
                 // this incurs the heaviest performance hit
-                $added = $added.add($clonedTarget);
+                var html ="<div class='form-group addel-target'> <label for='person' class='control-label'> 答案 </label> "+
+                " <div class='input-group'> <input type='text' id ='' iswrong='' isdel='' name='contacts[]' class='form-control'> "+
+                          " <span class='input-group-btn'> <button type='button' class='btn btn-danger addel-delete' >删除</button> "+
+                          " <button type='button' class='btn btn-danger addel-save' onclick=saveAnswer('',this)>保存</button> "+
+                          " <button type='button' class='btn btn-danger' bid='' onclick ='setWrong(this,0)'   disabled='disabled'   >设为正确答案</button> </span> "+
+                          " </div> </div>";
+                $added = $added.add(html);
 
             }
 

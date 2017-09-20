@@ -13,7 +13,7 @@ public interface SysService {
 	public void saveQuestion(DtQuestion question);
 	public DtQuestion findQuestionById(String id);
 	public void delQuestion(String id);
-	public String saveAnswer(String questionId,String val,String answerId,String iswrong,String isdel);
+	public DtAnswer saveAnswer(String questionId,String val,String answerId,String iswrong,String isdel);
 	public List<DtAnswer> findAnswerByQId(String questionId);
 	 public boolean delAnswerById(String answerId);
 	 public boolean setWrong(String answerId,String status);
