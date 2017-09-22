@@ -17,8 +17,8 @@ String targetPath =reader.getValue("path.properties", "read_file");
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>用户后台管理</title>
- <link href="<%=basePath %>source/images/logo1.png" type="image/x-icon" rel="shortcut icon" />
+<title>紫弘科技用户后台管理</title>
+ <link href="<%=basePath %>source/images/name.png" type="image/x-icon" rel="shortcut icon" />
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" type="text/css" href="<%=basePath %>source/css/bootstrap.min.css" />
 
@@ -39,13 +39,7 @@ String targetPath =reader.getValue("path.properties", "read_file");
 <body>
 <div id="wrap">
     <!-- start: Header -->
-<div class="navbar" role="navigation">
-    <!--logo start-->
-    <div class="profile">
-        <div class="logo"><a href="#"><img src="<%=basePath %>source/images/logo_03.png" alt=""></a></div>
-    </div>
-    <!--logo end-->  
-</div>
+<jsp:include page="../public/head.jsp"></jsp:include>
 <!-- end: Header -->
 
 
@@ -71,9 +65,8 @@ String targetPath =reader.getValue("path.properties", "read_file");
                                 <th>会员电话</th>
                                 <th>注册时间</th>
                                 <th>openid</th>
-                               	<th>头像</th>
                                	<th>微信号</th>
-                               	<th>拥有积分</th>
+                               	<th>拥有金币</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -84,13 +77,12 @@ String targetPath =reader.getValue("path.properties", "read_file");
                                      <td>${obj.userPhone }</td>
                                      <td><fmt:formatDate value="${obj.userAddtime }" type="date" dateStyle="full"/></td>
                                      <td>${obj.openid }</td>
-                                     <td>${obj.pic }</td>
                                      <td>${obj.userWx }</td>
                                      <td>${obj.userJifen }</td>
                                     <td>
-                                        <a href="userAction_findReward?id=${obj.userId }" class="btn btn-success"  title="查看积分记录"><i class="fa fa-edit"></i></a>
-                                        <a href="userAction_findYhq?id=${obj.userId }"   class="btn btn-success" title="查看优惠券记录"><i class="fa fa-copy"></i></a>
-                                        <a href="userAction_findProduct?id=${obj.userId }"   class="btn btn-success" title="商品兑换记录"><i class="fa fa-edit"></i></a>
+                                        <a href="userAction_findReward?id=${obj.userId }" class="btn btn-success"  title="查看金币记录"><i class="fa fa-search-plus"></i></a>
+                                        <!-- <a href="userAction_findYhq?id=${obj.userId }"   class="btn btn-success" title="查看优惠券记录"><i class="fa fa-search"></i></a> -->
+                                        <a href="userAction_findProduct?id=${obj.userId }"   class="btn btn-success" title="商品兑换记录"><i class="fa fa-search"></i></a>
                                     </td>
                                 </tr>
                              </c:forEach>

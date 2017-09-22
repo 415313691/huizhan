@@ -17,8 +17,8 @@ String targetPath =reader.getValue("path.properties", "read_file");
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>钢钢好用户后台管理</title>
- <link href="<%=basePath %>source/images/logo1.png" type="image/x-icon" rel="shortcut icon" />
+<title>紫弘科技用户后台管理</title>
+ <link href="<%=basePath %>source/images/name.png" type="image/x-icon" rel="shortcut icon" />
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" type="text/css" href="<%=basePath %>source/css/bootstrap.min.css" />
 
@@ -38,13 +38,7 @@ String targetPath =reader.getValue("path.properties", "read_file");
 <body>
 <div id="wrap">
     <!-- start: Header -->
-<div class="navbar" role="navigation">
-    <!--logo start-->
-    <div class="profile">
-        <div class="logo"><a href="#"><img src="<%=basePath %>source/images/logo_03.png" alt=""></a></div>
-    </div>
-    <!--logo end-->  
-</div>
+<jsp:include page="../public/head.jsp"></jsp:include>
 <!-- end: Header -->
 
 

@@ -17,8 +17,8 @@ String targetPath =reader.getValue("path.properties", "read_file");
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>用户后台管理</title>
- <link href="<%=basePath %>source/images/logo1.png" type="image/x-icon" rel="shortcut icon" />
+<title>紫弘科技用户后台管理</title>
+ <link href="<%=basePath %>source/images/name.png" type="image/x-icon" rel="shortcut icon" />
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" type="text/css" href="<%=basePath %>source/css/bootstrap.min.css" />
 
@@ -39,13 +39,7 @@ String targetPath =reader.getValue("path.properties", "read_file");
 <body>
 <div id="wrap">
     <!-- start: Header -->
-<div class="navbar" role="navigation">
-    <!--logo start-->
-    <div class="profile">
-        <div class="logo"><a href="#"><img src="<%=basePath %>source/images/logo_03.png" alt=""></a></div>
-    </div>
-    <!--logo end-->  
-</div>
+<jsp:include page="../public/head.jsp"></jsp:include>
 <!-- end: Header -->
 
 
@@ -57,7 +51,7 @@ String targetPath =reader.getValue("path.properties", "read_file");
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div data-original-title="" class="panel-heading">
-                        <h2><i class="fa fa-user"></i><span class="break"></span>红包列表</h2>
+                        <h2><i class="fa fa-user"></i><span class="break"></span>金币记录列表</h2>
                         
                     </div>
                     
@@ -68,21 +62,18 @@ String targetPath =reader.getValue("path.properties", "read_file");
                             <thead>
                             <tr role="row">
                                 <th>活动名称</th>
-                                <th>积分数量</th>
-                                <th>奖励时间</th>
-                                <th>状态</th>
+                                <th>金币数量</th>
+                                <th>操作时间</th>
+                                <th>商品名成</th>
                             </tr>
                             </thead>
                             <tbody>
                              <c:forEach items="${page.result}" var="obj">
                              <tr role="row">
                                      <td>${obj.activityName }</td>
-                                     <td>${obj.rewardMoney }</td>
-                                     <td><fmt:formatDate value="${obj.rewardTime }" type="date" dateStyle="full"/></td>
-                                     <td>
-                                      <c:if test="${obj.rewardState=='0'}">已到帐</c:if>
-                                      <c:if test="${obj.rewardState=='1'}">未到账</c:if>
-                                     </td>
+                                     <td>${obj.jifenNum }</td>
+                                     <td><fmt:formatDate value="${obj.jifenDate }" type="date" dateStyle="full"/></td>
+                                     <td>${obj.productName }</td>
                                      
                                 </tr>
                              </c:forEach>
@@ -91,6 +82,7 @@ String targetPath =reader.getValue("path.properties", "read_file");
                           <jsp:include page="../public/page.jsp"/>
                             <form action="<%=basePath%>userAction_findReward" method="post" id="pageForm">
        					 	<input type="hidden" name="currentPage" id="curPage" />
+       					 	<input  type="hidden" name="id" value="${id }"/>
     						</form>
                         </div><!--row-->            
                     </div>

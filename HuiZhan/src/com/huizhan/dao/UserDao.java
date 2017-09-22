@@ -15,6 +15,7 @@ import com.huizhan.entities.DtUser;
 import com.huizhan.entities.DtYhqRecord;
 import com.huizhan.entities.HzProductUser;
 import com.huizhan.entities.HzProduction;
+import com.huizhan.entities.UserJifenLog;
 import com.huizhan.util.Page;
 
 @Repository("userdao")
@@ -58,15 +59,16 @@ public class UserDao {
 		 Session session = sessionFactory.getCurrentSession();
 	        Page page = new Page();
 	        try{
-	            String sql =" select t.*,a.activity_name from dt_reward_detail t,dt_activity a,dt_activity_record r where t.arecord_id = r.arecord_id and r.activity_id = a.activity_id and t.user_id = '"+userId+"' ";
-	            Query query = session.createSQLQuery(sql).addEntity(DtRewardDetail.class).addScalar("a.activity_name");
+	            String sql =" select g.*,a.activity_name,p.product_name from user_jifen_log g left JOIN dt_activity a on g.activity_id = a.activity_id LEFT JOIN hz_production p on g.product_id = p.product_id where g.user_id = '"+userId+"' ";
+	            Query query = session.createSQLQuery(sql).addEntity(UserJifenLog.class).addScalar("a.activity_name").addScalar("p.product_name");
 	            query.setFirstResult((currentPageNum - 1) * pageSize);
 	            query.setMaxResults(pageSize);
 	            List<Object[]> objs = query.list();
-	            List<DtRewardDetail> details = new ArrayList<DtRewardDetail>();
+	            List<UserJifenLog> details = new ArrayList<UserJifenLog>();
 	            for(Object[] obj:objs){
-	            	DtRewardDetail detail = (DtRewardDetail)obj[0];
+	            	UserJifenLog detail = (UserJifenLog)obj[0];
 	            	detail.setActivityName(obj[1]==null?"":obj[1]+"");
+	            	detail.setProductName(obj[2]==null?"":obj[2]+"");
 	            	details.add(detail);
 	            }
 	            page = new Page(currentPageNum, this.findTotal(sql), pageSize, details);
@@ -106,20 +108,19 @@ public class UserDao {
 		 Session session = sessionFactory.getCurrentSession();
 	        Page page = new Page();
 	        try{
-	            String sql =" select pu.*,p.product_name,u.user_realname,p.product_price from  hz_product_user pu LEFT JOIN hz_production p on pu.product_id = p.product_id LEFT JOIN dt_user u ON pu.user_id = u.user_id where pu.user_id = '"+userId+"' ";
-	            Query query = session.createSQLQuery(sql).addEntity(HzProductUser.class).addScalar("p.product_name").addScalar("u.user_realname").addScalar("p.product_price");
+	            String sql =" select g.*,a.activity_name,p.product_name from user_jifen_log g left JOIN dt_activity a on g.activity_id = a.activity_id LEFT JOIN hz_production p on g.product_id = p.product_id where g.user_id = '"+userId+"' and g.product_id is not null  and g.product_id !='' ";
+	            Query query = session.createSQLQuery(sql).addEntity(UserJifenLog.class).addScalar("a.activity_name").addScalar("p.product_name");
 	            query.setFirstResult((currentPageNum - 1) * pageSize);
 	            query.setMaxResults(pageSize);
 	            List<Object[]> objs = query.list();
-	            List<HzProductUser> pus = new ArrayList<HzProductUser>();
+	            List<UserJifenLog> details = new ArrayList<UserJifenLog>();
 	            for(Object[] obj:objs){
-	            	HzProductUser pu = (HzProductUser)obj[0];
-	            	pu.setProductName(obj[1]==null?"":obj[1]+"");
-	            	pu.setRealName(obj[2]==null?"":obj[2]+"");
-	            	pu.setProductPrice(obj[3]==null?"":obj[3]+"");
-	            	pus.add(pu);
+	            	UserJifenLog detail = (UserJifenLog)obj[0];
+	            	detail.setActivityName(obj[1]==null?"":obj[1]+"");
+	            	detail.setProductName(obj[2]==null?"":obj[2]+"");
+	            	details.add(detail);
 	            }
-	            page = new Page(currentPageNum, this.findTotal(sql), pageSize, pus);
+	            page = new Page(currentPageNum, this.findTotal(sql), pageSize, details);
 	        }catch(Exception de){
 	            de.printStackTrace();
 	            throw  new RuntimeException();

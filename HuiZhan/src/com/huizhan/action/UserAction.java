@@ -42,6 +42,7 @@ public class UserAction {
         }
         Page page = userService.findReward(id, currentPageNum, pageSize);
         ActionContext.getContext().put("page", page);
+        ActionContext.getContext().put("id", id);
 		return "reward_ok";
 	}
 	public String findYhq(){
@@ -67,6 +68,7 @@ public class UserAction {
         }
         Page page = userService.findMyProduct(id, currentPageNum, pageSize);
         ActionContext.getContext().put("page", page);
+        ActionContext.getContext().put("id", id);
 		return "product_ok";
 	}
 	

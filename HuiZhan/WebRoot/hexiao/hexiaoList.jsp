@@ -17,7 +17,7 @@ String targetPath =reader.getValue("path.properties", "read_file");
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>紫红科技用户后台管理</title>
+<title>紫弘科技用户后台管理</title>
  <link href="<%=basePath %>source/images/name.png" type="image/x-icon" rel="shortcut icon" />
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" type="text/css" href="<%=basePath %>source/css/bootstrap.min.css" />
@@ -33,77 +33,78 @@ String targetPath =reader.getValue("path.properties", "read_file");
 
 <link href="<%=basePath %>source/css/atom-style.css" rel="stylesheet">
 <link href="<%=basePath %>source/css/minimal.css" rel="stylesheet">
-
-<script type="text/javascript" src="<%=basePath %>source/js/jquery-3.2.1.min.js"></script>
+<link href="<%=basePath %>source/date/css/bootstrap-datetimepicker.css" rel="stylesheet">
+<script type="text/javascript" src="<%=basePath %>source/date/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<%=basePath %>source/date/js/bootstrap.min.js"></script>
+<script src="<%=basePath %>source/date/js/moment-with-locales.js"></script>
+<script src="<%=basePath %>source/date/js/bootstrap-datetimepicker.js"></script>
 </head>
 <body>
 <div id="wrap">
     <!-- start: Header -->
-<div class="navbar" role="navigation">
-    <!--logo start-->
-    <div class="profile">
-        <div class="logo"><a href="#"><img src="<%=basePath %>source/images/name.png" alt=""></a></div>
-    </div>
-    <!--logo end-->  
-</div>
+<jsp:include page="../public/head.jsp"></jsp:include>
 <!-- end: Header -->
 
 
 <jsp:include page="../public/left.jsp"></jsp:include>
  <!-- start: Content -->
 <div class="main" style="min-height:850px;">
- 
 		<div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div data-original-title="" class="panel-heading">
-                        <h2><i class="fa fa-user"></i><span class="break"></span>优惠券列表</h2>
-                        <a href="yhqAction_before_editYhq" class="btn btn-danger" style=" float:right; margin-top:3px;">
-                         		新增优惠券
-                        </a>
+                        <h2 style="display: block;"><i class="fa fa-user"></i><span class="break"></span>商品兑换列表</h2>
+                        <form action="productAction_findUserProduct" method="POST">
+                        	<div style="display: inline-block;"><span style="display: inline-block;margin-right: 7px;">状态: </span><select class="form-control" name="states" style="width:180px;display: inline-block;">
+                        		<option  value="">请选择</option>
+                        		<option <c:if test="${states=='Y' }">selected="selected"</c:if> value="Y">已核销</option>
+                        		<option <c:if test="${states=='N' }">selected="selected"</c:if> value="N">未核销</option>
+                        	</select>
+                        	</div>
+                        	<div style="display: inline-block;"><span style="display: inline-block;margin-right: 7px;">核销码:</span><input name="pass" value="${pass }" class="form-control" type="text" style="width:180px;display: inline-block;"/></div>
+                        	<div style="display: inline-block;"><span style="display: inline-block;margin-right: 7px;"></span><input class="btn btn-danger btn-lg" style="height:35px;" type="submit" value="查询"/></div>
+                        	</form>
                     </div>
                     
                     <div class="panel-body">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline no-footer">
-
+		
                             <table id="datatable" class="table table-striped table-bordered bootstrap-datatable" cellspacing="0" width="100%">
                             <thead>
                             <tr role="row">
-                                <th>活动名称</th>
-                                <th>开始时间</th>
-                                <th>结束时间</th>
-                                <th>优惠券名称</th>
-                                <th>店名</th>
-                                <th>联系电话</th>
-                               	<th>优惠券数量</th>
+                                <th>产品名称</th>
+                                <th>所需金币</th>
+                                <th>核销码</th>
+                               	<th>状态</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                              <c:forEach items="${page.result}" var="obj">
                              <tr role="row">
-                                     <td>${obj.activityName }</td>
-                                     <td><fmt:formatDate value="${obj.yhqBegintime }" type="date" dateStyle="full"/></td>
-                                     <td><fmt:formatDate value="${obj.yhqEndtime }" type="date" dateStyle="full"/></td>
-                                     <td>${obj.yhqName }</td>
-                                     <td>${obj.yhqCompany }</td>
-                                     <td>${obj.yhqPhone }</td>
-                                     <td>${obj.yhqCount }</td>
+                                     <td>${obj.productName }</td>
+                                     <td>${obj.delJifen }</td>
+                                     <td>${obj.puPass }</td>
+                                  
+                                     <td><c:if test="${obj.puStatus=='N' }">未核销</c:if>
+                                     	 <c:if test="${obj.puStatus=='Y' }">已核销</c:if></td>
                                     <td>
-                                        <a href="yhqAction_delYhq?id=${obj.yhqId }" onclick="if(confirm('确认要删除吗？')==false)return false;" class="btn btn-success"  title="删除">
+                                    <c:if test="${obj.puStatus=='N' }"> 
+                                        <a href="productAction_HeXiao?id=${obj.puId }" onclick="if(confirm('确认要核销该记录吗？')==false)return false;" class="btn btn-success"  title="核销">
                                             <i class="fa fa-copy"></i>
                                         </a>
-                                        <a href="yhqAction_before_editYhq?id=${obj.yhqId }" class="btn btn-info" title="编辑">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
+                                        </c:if>
+                                        <c:if test="${obj.puStatus=='Y' }">已核销</c:if>
                                     </td>
                                 </tr>
                              </c:forEach>
                             </tbody>
                             </table>
-                          <jsp:include page="../public/page.jsp"/>
-                            <form action="<%=basePath%>yhqAction_findAllYhq" method="post" id="pageForm">
+                          <jsp:include page="../public/page.jsp"></jsp:include>
+                            <form action="<%=basePath%>productAction_findUserProduct" method="post" id="pageForm">
        					 	<input type="hidden" name="currentPage" id="curPage" />
+       					 	<input type="hidden" name="states" value="${states}"/>
+       					 	<input type="hidden" name="pass" value="${pass}"/>
     						</form>
                         </div><!--row-->            
                     </div>

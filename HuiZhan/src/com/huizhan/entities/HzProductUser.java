@@ -3,12 +3,9 @@ package com.huizhan.entities;
 import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * HzProductUser entity. @author MyEclipse Persistence Tools
@@ -23,10 +20,13 @@ public class HzProductUser implements java.io.Serializable {
 	private String productId;
 	private String userId;
 	private Timestamp puDate;
+	private Integer delJifen;
+	private String puPass;
+	private String puStatus;
 	
-	private String realName;
 	private String productName;
-	private String productPrice;
+	private String userName;
+	private String userPhone;
 
 	// Constructors
 
@@ -41,17 +41,18 @@ public class HzProductUser implements java.io.Serializable {
 
 	/** full constructor */
 	public HzProductUser(String puId, String productId, String userId,
-			Timestamp puDate) {
+			Timestamp puDate, Integer delJifen, String puPass, String puStatus) {
 		this.puId = puId;
 		this.productId = productId;
 		this.userId = userId;
 		this.puDate = puDate;
+		this.delJifen = delJifen;
+		this.puPass = puPass;
+		this.puStatus = puStatus;
 	}
 
 	// Property accessors
 	@Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid",strategy="uuid")
 	@Column(name = "pu_id", unique = true, nullable = false, length = 100)
 	public String getPuId() {
 		return this.puId;
@@ -87,13 +88,32 @@ public class HzProductUser implements java.io.Serializable {
 	public void setPuDate(Timestamp puDate) {
 		this.puDate = puDate;
 	}
-	@Transient
-	public String getRealName() {
-		return realName;
+
+	@Column(name = "del_jifen")
+	public Integer getDelJifen() {
+		return this.delJifen;
 	}
 
-	public void setRealName(String realName) {
-		this.realName = realName;
+	public void setDelJifen(Integer delJifen) {
+		this.delJifen = delJifen;
+	}
+
+	@Column(name = "pu_pass", length = 100)
+	public String getPuPass() {
+		return this.puPass;
+	}
+
+	public void setPuPass(String puPass) {
+		this.puPass = puPass;
+	}
+
+	@Column(name = "pu_status", length = 1)
+	public String getPuStatus() {
+		return this.puStatus;
+	}
+
+	public void setPuStatus(String puStatus) {
+		this.puStatus = puStatus;
 	}
 	@Transient
 	public String getProductName() {
@@ -104,13 +124,22 @@ public class HzProductUser implements java.io.Serializable {
 		this.productName = productName;
 	}
 	@Transient
-	public String getProductPrice() {
-		return productPrice;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setProductPrice(String productPrice) {
-		this.productPrice = productPrice;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
+	@Transient
+	public String getUserPhone() {
+		return userPhone;
+	}
+
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
+	}
+	
 	
 	
 

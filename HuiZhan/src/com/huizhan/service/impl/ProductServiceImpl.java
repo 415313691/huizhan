@@ -44,4 +44,20 @@ public class ProductServiceImpl implements ProductService {
 			 de.printStackTrace();
 		 }
 	 }
+	 public Page findUserProduct(String states,String pass,int currentPageNum, int pageSize){
+		 try{
+			 return productDao.findUserProduct(states, pass, currentPageNum, pageSize);
+		 }catch(Exception de){
+			 de.printStackTrace();
+		 }
+		 return null;
+	 }
+	 public void UpdateHeXiao(String id){
+		 try{
+			 productDao.UpdateHeXiao(id);
+		 }catch(Exception de){
+			 de.printStackTrace();
+		 }
+		 
+	 }
 }

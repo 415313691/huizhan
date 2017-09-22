@@ -8,4 +8,6 @@ public interface ProductService {
 	public HzProduction findProductById(String productId);
 	 public void saveProduct(HzProduction product);
 	 public void delProduct(String productId);
+	 public Page findUserProduct(String states,String pass,int currentPageNum, int pageSize);
+	 public void UpdateHeXiao(String id);
 }

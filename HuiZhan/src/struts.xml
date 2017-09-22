@@ -41,6 +41,7 @@
             	<param name="actionName">sysAction_findAllQuestion</param>
             </result>
             <result name="jump_setAnswer">/editAnswer.jsp</result>
+            <result name="login_out">/login.jsp</result>
         </action>
          <action name="actAction_*" class="actAction" method="{1}">
              <result name="activitys_ok">/activity/activityList.jsp</result>
@@ -74,6 +75,8 @@
         	<result name="before_ok">/production/editProduction.jsp</result>
         	<result name="save_ok" type="redirectAction">productAction_findAllProduct</result>
         	<result name="del_ok" type="redirectAction">productAction_findAllProduct</result>
+        	<result name="hexiao_list">/hexiao/hexiaoList.jsp</result>
+        	<result name="hexiao_ok" type="redirectAction">productAction_findUserProduct</result>
         </action>
     </package>
      

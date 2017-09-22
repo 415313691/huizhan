@@ -21,8 +21,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
+<div style="display: table;top:50%;left:50%;width:602px;height:412px;margin-left: -301px;margin-top: -206px;position: relative;">
     <div class="logo">
-        <h4><a href="#"><img src="source/images/logo.png" alt=""></a></h4>
+        <h4><a href="#"><img src="source/images/zihong.png" alt=""></a></h4>
     </div>
     <form name="Login" id="loginForm" onSubmit="return CheckForm()" action="sysAction_login" method="post">
     <div class="lock-holder">
@@ -41,14 +42,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                 </div>
             </div> 
-           	<div id="errorTip">${message }</div>
+           	<div id="errorTip" style="color:red;margin:0 auto;text-align:center;margin-top:30px;">${message }</div>
         </div>
     </div> 
     <div class="submit">
         <button type="submit" class="btn btn-primary btn-lg">登陆后台</button>   
     </div>
     </form>
-
+</div>
 </body>
 
 <script type="text/javascript">

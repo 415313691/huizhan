@@ -48,6 +48,11 @@ public class SysAction {
 		}
 		
 	}
+	public String logout(){
+		Map<String,Object> session =ActionContext.getContext().getSession();
+		session.remove("user");
+		return "login_out";
+	}
 	
 	public String findAllQuestion(){
 		int pageSize = 10;// 每页显示数据量

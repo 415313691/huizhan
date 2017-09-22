@@ -19,6 +19,8 @@ public class ProductAction {
 	private String currentPage;
 	private HzProduction product;
 	private String id;
+	private String states;
+	private String pass;
 	
 	public String findAllProduct(){
 		int pageSize = 10;// 每页显示数据量
@@ -50,6 +52,29 @@ public class ProductAction {
 		productService.delProduct(id);
 		return "del_ok";
 	}
+	
+	
+	//核销管理 列表
+	public String findUserProduct(){
+		int pageSize = 10;// 每页显示数据量
+        int currentPageNum = 1;// 当前页码
+
+        String currentPage = this.currentPage;
+        if (currentPage != null && !"".equals(currentPage)) {
+            currentPageNum = Integer.parseInt(currentPage);
+        }
+		Page page =productService.findUserProduct(states, pass, currentPageNum, pageSize);
+		ActionContext.getContext().put("page", page);
+		ActionContext.getContext().put("states", states);
+		ActionContext.getContext().put("pass", pass);
+		return "hexiao_list";
+	}
+	
+	//核销方法
+	public String HeXiao(){
+		productService.UpdateHeXiao(id);
+		return "hexiao_ok";
+	}
 	public String getCurrentPage() {
 		return currentPage;
 	}
@@ -67,6 +92,22 @@ public class ProductAction {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getStates() {
+		return states;
+	}
+
+	public void setStates(String states) {
+		this.states = states;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	
 }

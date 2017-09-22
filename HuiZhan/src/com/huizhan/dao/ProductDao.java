@@ -10,7 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import com.huizhan.entities.DtActivity;
+import com.huizhan.entities.HzProductUser;
 import com.huizhan.entities.HzProduction;
 import com.huizhan.util.Page;
 
@@ -77,4 +77,42 @@ public class ProductDao {
 		  session.createSQLQuery(sql).setParameter("id",productId).executeUpdate();
 		  
 	  }
+	  
+		 public Page findUserProduct(String states,String pass,int currentPageNum, int pageSize)throws Exception{
+			 Session session = sessionFactory.getCurrentSession();
+		        Page page = new Page();
+		        List<HzProductUser> ups = new ArrayList<HzProductUser>();
+		        try{
+		            String sql =" select pu.*,u.user_realname,u.user_phone ,p.product_name from hz_product_user pu LEFT JOIN hz_production p on pu.product_id = p.product_id LEFT JOIN dt_user u on pu.user_id = u.user_id where 1=1 ";
+		            if(!"".equals(states)&&states!=null){
+		            	sql+=" and pu.pu_status = '"+states+"'";
+		            }
+		            if(!"".equals(pass)&&pass!=null){
+		            	sql+="  and pu.pu_pass = '"+pass+"' ";
+		            }
+		            Query query = session.createSQLQuery(sql).addEntity(HzProductUser.class).addScalar("u.user_realname").addScalar("u.user_phone").addScalar("p.product_name");
+		            query.setFirstResult((currentPageNum - 1) * pageSize);
+		            query.setMaxResults(pageSize);
+		            List<Object[]> objs = query.list();
+		            for(Object[] obj:objs){
+		            	HzProductUser pu = (HzProductUser)obj[0];
+		            	pu.setUserName(obj[1]==null?"":obj[1]+"");
+		            	pu.setUserPhone(obj[2]==null?"":obj[2]+"");
+		            	
+		            	pu.setProductName(obj[3]==null?"":obj[3]+"");
+		            	ups.add(pu);
+		            }
+		            page = new Page(currentPageNum, this.findTotal(sql), pageSize, ups);
+		        }catch(Exception de){
+		            throw  new RuntimeException();
+		        }
+		        return page;
+			 
+		 }
+		 
+		 public void UpdateHeXiao(String id){
+			 Session session = sessionFactory.getCurrentSession();
+			 String sql =" update hz_product_user set pu_status = 'Y' where pu_id = '"+id+"' ";
+			 session.createSQLQuery(sql).executeUpdate();
+		 }
 }
